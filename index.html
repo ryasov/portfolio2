@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="ru" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Портфолио | Антон Рясов - Маркетолог и Бренд-стратег</title>
+
+  <!-- Fonts + Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --neon-orange:#ff7f00;
+      --neon-cyan:#00ffff;
+      --neon-violet:#8a2be2;
+      --neon-cyanblue-start:#22d3ee; /* bright cyan */
+      --neon-cyanblue-end:#3b82f6;   /* bright blue */
+
+      /* Global typography defaults (can be overridden per section via inline CSS variables) */
+      --title-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+      --title-color: #ffffff;
+
+      --subtitle-size: 1.5rem;
+      --subtitle-color: #e2e8f0;
+
+      --body-size: 1.0625rem;
+      --body-color: #d1d5db;
+
+      --small-size: 0.9375rem;
+      --small-color: #94a3b8;
+
+      --button-size: 1rem;
+      --button-color: #ffffff;
+    }
+
+    /* Typography system */
+    [data-ty-scope] .ty-title{
+      font-size: var(--title-size, 3rem);
+      color: var(--title-color, #fff);
+      line-height: 1.15;
+    }
+    [data-ty-scope] .ty-subtitle{
+      font-size: var(--subtitle-size, 1.5rem);
+      color: var(--subtitle-color, #e2e8f0);
+      line-height: 1.25;
+    }
+    [data-ty-scope] .ty-body{
+      font-size: var(--body-size, 1rem);
+      color: var(--body-color, #d1d5db);
+      line-height: 1.6;
+    }
+    [data-ty-scope] .ty-small{
+      font-size: var(--small-size, 0.9rem);
+      color: var(--small-color, #94a3b8);
+      line-height: 1.4;
+    }
+    [data-ty-scope] .ty-button{
+      font-size: var(--button-size, 1rem);
+      color: var(--button-color, #fff);
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0c0a09;
+      color:#E5E7EB;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Background aurora + subtle noise */
+    .aurora-background{position:fixed;inset:0;z-index:-1;overflow:hidden}
+    .aurora-background::after{
+      content:'';position:absolute;inset:0;width:100%;height:100%;
+      background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dHTZ2dnu7u7X1dWYmJixsbGvrq7W1dfMzMy4uLioqKiiouLW1rePj4+Pj5fZ2dni4uLy8vLz8/P09PTy8vLV1dfGxsY/B53aAAAAWklEQVR42tVRBwYAMQiDztDPsP/u/w+wgyoFBrIZFmB4J0tJgkx3E9ZJt25n/ACQmmky8Mho3OqXQoF7F232aUPh2SATE4pSlp0zHw5T8wA1EwA1s/IA3bA45gD5yQyAAAAAElFTkSuQmCC');
+      opacity:.03;pointer-events:none
+    }
+    .bg-radial-gradient{background-image:radial-gradient(circle,var(--tw-gradient-stops))}
+    @keyframes pulse-slow{0%,100%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+    .animate-pulse-slow{animation:pulse-slow 8s ease-in-out infinite}
+    .animation-delay-2000{animation-delay:2s}
+    .animation-delay-4000{animation-delay:4s}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(50px);transition:opacity .6s ease-out,transform .6s ease-out}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* Header nav links glow */
+    .header-nav-link{position:relative;padding:8px 16px;border-radius:8px;transition:color .3s ease}
+    .header-nav-link::before{
+      content:'';position:absolute;inset:0;border-radius:8px;padding:2px;
+      background:linear-gradient(45deg,var(--neon-cyan),var(--neon-orange));
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s ease
+    }
+    .header-nav-link:hover{color:var(--neon-cyan)}
+    .header-nav-link:hover::before{opacity:1}
+    .header-nav-link::after{
+      content:'';position:absolute;inset:0;background:linear-gradient(45deg,var(--neon-cyan),var(--neon-orange));opacity:0;
+      filter:blur(18px);border-radius:8px;transition:opacity .3s ease;z-index:-1
+    }
+    .header-nav-link:hover::after{opacity:.25}
+
+    /* Neon hover and active glow (used by ABOUT points) */
+    .neon-hover-effect,.neon-active-glow{position:relative;border-radius:1rem;transition:transform .3s ease,box-shadow .3s ease}
+    .neon-hover-effect::before,.neon-active-glow::before{
+      content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;
+      background:linear-gradient(45deg,var(--neon-cyan),var(--neon-orange));
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      mask-composite:exclude;opacity:0;transition:opacity .4s ease-in-out;pointer-events:none
+    }
+    .neon-hover-effect::after,.neon-active-glow::after{
+      content:"";position:absolute;inset:0;background:linear-gradient(45deg,var(--neon-cyan),var(--neon-orange));
+      border-radius:inherit;opacity:0;filter:blur(20px);z-index:-1;transition:opacity .4s ease-in-out;pointer-events:none
+    }
+    .neon-hover-effect:hover::before,.neon-active-glow.is-glowing::before{opacity:1}
+    .neon-hover-effect:hover::after,.neon-active-glow.is-glowing::after{opacity:.25}
+
+    /* Animated gradient text (constant running) */
+    .animated-gradient-text{
+      background:linear-gradient(120deg,var(--neon-violet),var(--neon-cyan),var(--neon-orange));
+      background-size:200% 200%;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:move-gradient 3s ease-in-out infinite alternate
+    }
+    @keyframes move-gradient{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+
+    /* Применение: оборачиваем родителя animated-gradient-text нужным классом-палитрой */
+/* <div class="gradient-aurora"><span class="animated-gradient-text">Текст</span></div> */
+
+.gradient-aurora{        /* Aurora Borealis */
+  --neon-violet:#8B5CF6; --neon-cyan:#22D3EE; --neon-orange:#10B981;
+  /* linear-gradient(120deg, #8B5CF6, #22D3EE, #10B981) */
+}
+
+.gradient-sunset{        /* Sunset Sorbet */
+  --neon-violet:#FF7A18; --neon-cyan:#FF3E7F; --neon-orange:#8B5CF6;
+  /* linear-gradient(120deg, #FF7A18, #FF3E7F, #8B5CF6) */
+}
+
+.gradient-cyber-mint{    /* Cyber Mint */
+  --neon-violet:#22D3EE; --neon-cyan:#10B981; --neon-orange:#84CC16;
+  /* linear-gradient(120deg, #22D3EE, #10B981, #84CC16) */
+}
+
+.gradient-royal-prism{   /* Royal Prism */
+  --neon-violet:#3B82F6; --neon-cyan:#8B5CF6; --neon-orange:#F59E0B;
+  /* linear-gradient(120deg, #3B82F6, #8B5CF6, #F59E0B) */
+}
+
+.gradient-candy-neon{    /* Candy Neon */
+  --neon-violet:#EC4899; --neon-cyan:#A855F7; --neon-orange:#22D3EE;
+  /* linear-gradient(120deg, #EC4899, #A855F7, #22D3EE) */
+}
+
+.gradient-lava{          /* Lava Glaze */
+  --neon-violet:#F97316; --neon-cyan:#EF4444; --neon-orange:#F43F5E;
+  /* linear-gradient(120deg, #F97316, #EF4444, #F43F5E) */
+}
+
+.gradient-ocean-night{   /* Ocean Night */
+  --neon-violet:#06B6D4; --neon-cyan:#3B82F6; --neon-orange:#7C3AED;
+  /* linear-gradient(120deg, #06B6D4, #3B82F6, #7C3AED) */
+}
+
+.gradient-citrus{        /* Citrus Twist */
+  --neon-violet:#F59E0B; --neon-cyan:#84CC16; --neon-orange:#22D3EE;
+  /* linear-gradient(120deg, #F59E0B, #84CC16, #22D3EE) */
+}
+
+.gradient-ice-fire{      /* Ice & Fire */
+  --neon-violet:#22D3EE; --neon-cyan:#F59E0B; --neon-orange:#EF4444;
+  /* linear-gradient(120deg, #22D3EE, #F59E0B, #EF4444) */
+}
+
+.gradient-cyber-wave{    /* Cyber Wave */
+  --neon-violet:#22D3EE; --neon-cyan:#0EA5E9; --neon-orange:#9333EA;
+  /* linear-gradient(120deg, #22D3EE, #0EA5E9, #9333EA) */
+}
+
+.gradient-velvet-sky{    /* Velvet Sky */
+  --neon-violet:#9333EA; --neon-cyan:#EC4899; --neon-orange:#F59E0B;
+  /* linear-gradient(120deg, #9333EA, #EC4899, #F59E0B) */
+}
+
+.gradient-forest{        /* Forest Aurora */
+  --neon-violet:#22C55E; --neon-cyan:#10B981; --neon-orange:#06B6D4;
+  /* linear-gradient(120deg, #22C55E, #10B981, #06B6D4) */
+}
+
+.gradient-rose-gold{     /* Rose Gold Luxe */
+  --neon-violet:#F9A8D4; --neon-cyan:#F59E0B; --neon-orange:#FDE68A;
+  /* linear-gradient(120deg, #F9A8D4, #F59E0B, #FDE68A) */
+}
+
+.gradient-arctic-dawn{   /* Arctic Dawn */
+  --neon-violet:#67E8F9; --neon-cyan:#60A5FA; --neon-orange:#A78BFA;
+  /* linear-gradient(120deg, #67E8F9, #60A5FA, #A78BFA) */
+}
+
+.gradient-mango-lagoon{  /* Mango Lagoon */
+  --neon-violet:#F59E0B; --neon-cyan:#FB923C; --neon-orange:#22C55E;
+  /* linear-gradient(120deg, #F59E0B, #FB923C, #22C55E) */
+}
+
+/* Контрастные неоновые палитры (3 цвета → --neon-violet, --neon-cyan, --neon-orange) */
+
+.gradient-neon-fusion{
+  --neon-violet:#FF00E5; --neon-cyan:#00F0FF; --neon-orange:#FFEA00;
+  /* linear-gradient(120deg, #FF00E5, #00F0FF, #FFEA00) */
+}
+
+.gradient-psy-pop{
+  --neon-violet:#FF2E2E; --neon-cyan:#00FF85; --neon-orange:#6C00FF;
+  /* linear-gradient(120deg, #FF2E2E, #00FF85, #6C00FF) */
+}
+
+.gradient-acid-candy{
+  --neon-violet:#FF007A; --neon-cyan:#00FFD1; --neon-orange:#FFB800;
+  /* linear-gradient(120deg, #FF007A, #00FFD1, #FFB800) */
+}
+
+.gradient-electric-berry{
+  --neon-violet:#8A00FF; --neon-cyan:#00FFFB; --neon-orange:#FF0054;
+  /* linear-gradient(120deg, #8A00FF, #00FFFB, #FF0054) */
+}
+
+.gradient-plasma-sky{
+  --neon-violet:#00A8FF; --neon-cyan:#39FF14; --neon-orange:#FF2079;
+  /* linear-gradient(120deg, #00A8FF, #39FF14, #FF2079) */
+}
+
+.gradient-tropical-pop{
+  --neon-violet:#FF7F00; --neon-cyan:#00D1FF; --neon-orange:#BC00FF;
+  /* linear-gradient(120deg, #FF7F00, #00D1FF, #BC00FF) */
+}
+
+.gradient-arcade-glow{
+  --neon-violet:#00FF00; --neon-cyan:#FF00FF; --neon-orange:#00A3FF;
+  /* linear-gradient(120deg, #00FF00, #FF00FF, #00A3FF) */
+}
+
+.gradient-hyper-sunset{
+  --neon-violet:#FF006E; --neon-cyan:#FFD500; --neon-orange:#3A0CA3;
+  /* linear-gradient(120deg, #FF006E, #FFD500, #3A0CA3) */
+}
+
+.gradient-uv-jungle{
+  --neon-violet:#00FFB3; --neon-cyan:#FF00A8; --neon-orange:#00B3FF;
+  /* linear-gradient(120deg, #00FFB3, #FF00A8, #00B3FF) */
+}
+
+.gradient-laser-lemonade{
+  --neon-violet:#C6FF00; --neon-cyan:#00E5FF; --neon-orange:#FF3D00;
+  /* linear-gradient(120deg, #C6FF00, #00E5FF, #FF3D00) */
+}
+
+.gradient-comet-pop{
+  --neon-violet:#00F260; --neon-cyan:#0575E6; --neon-orange:#FF0080;
+  /* linear-gradient(120deg, #00F260, #0575E6, #FF0080) */
+}
+
+.gradient-kawaii-blast{
+  --neon-violet:#FF49C6; --neon-cyan:#9EFF00; --neon-orange:#00C2FF;
+  /* linear-gradient(120deg, #FF49C6, #9EFF00, #00C2FF) */
+}
+
+.gradient-vaporwave-punch{
+  --neon-violet:#F72585; --neon-cyan:#7209B7; --neon-orange:#4CC9F0;
+  /* linear-gradient(120deg, #F72585, #7209B7, #4CC9F0) */
+}
+
+.gradient-noise-pop{
+  --neon-violet:#FF1B1B; --neon-cyan:#00FFD5; --neon-orange:#FFD400;
+  /* linear-gradient(120deg, #FF1B1B, #00FFD5, #FFD400) */
+}
+
+.gradient-spark-burst{
+  --neon-violet:#FF00C3; --neon-cyan:#00FF47; --neon-orange:#0066FF;
+  /* linear-gradient(120deg, #FF00C3, #00FF47, #0066FF) */
+}
+
+/* 20 контрастных палитр (3 цвета). Применение:
+   <div class="gradient-steel-blade"><span class="animated-gradient-text">Текст</span></div> */
+
+.gradient-steel-blade{      /* Steel */
+  --neon-violet:#C5CCD3; --neon-cyan:#6B7280; --neon-orange:#1F2937;
+  /* linear-gradient(120deg,#C5CCD3,#6B7280,#1F2937) */
+}
+
+.gradient-gunmetal-blue{    /* Gunmetal + Blue accent */
+  --neon-violet:#0B1220; --neon-cyan:#1E293B; --neon-orange:#38BDF8;
+  /* linear-gradient(120deg,#0B1220,#1E293B,#38BDF8) */
+}
+
+.gradient-chrome-ice{       /* Chrome / Ice */
+  --neon-violet:#E5E7EB; --neon-cyan:#9CA3AF; --neon-orange:#60A5FA;
+  /* linear-gradient(120deg,#E5E7EB,#9CA3AF,#60A5FA) */
+}
+
+.gradient-carbon-smoke{     /* Carbon / Smoke */
+  --neon-violet:#0F172A; --neon-cyan:#374151; --neon-orange:#94A3B8;
+  /* linear-gradient(120deg,#0F172A,#374151,#94A3B8) */
+}
+
+.gradient-graphite-sheen{   /* Graphite Sheen */
+  --neon-violet:#2D2F33; --neon-cyan:#7F8994; --neon-orange:#D1D5DB;
+  /* linear-gradient(120deg,#2D2F33,#7F8994,#D1D5DB) */
+}
+
+.gradient-midnight-reef{    /* Midnight → Reef */
+  --neon-violet:#0B132B; --neon-cyan:#1D4ED8; --neon-orange:#22D3EE;
+  /* linear-gradient(120deg,#0B132B,#1D4ED8,#22D3EE) */
+}
+
+.gradient-sapphire-surge{   /* Deep Sapphire */
+  --neon-violet:#0A2540; --neon-cyan:#1E40AF; --neon-orange:#38BDF8;
+  /* linear-gradient(120deg,#0A2540,#1E40AF,#38BDF8) */
+}
+
+.gradient-navy-ice{         /* Navy / Ice */
+  --neon-violet:#0F172A; --neon-cyan:#2563EB; --neon-orange:#93C5FD;
+  /* linear-gradient(120deg,#0F172A,#2563EB,#93C5FD) */
+}
+
+.gradient-glacier-flash{    /* Glacier */
+  --neon-violet:#0891B2; --neon-cyan:#67E8F9; --neon-orange:#F0FDFF;
+  /* linear-gradient(120deg,#0891B2,#67E8F9,#F0FDFF) */
+}
+
+.gradient-cobalt-ember{     /* Cobalt → Amber */
+  --neon-violet:#1E3A8A; --neon-cyan:#2563EB; --neon-orange:#F59E0B;
+  /* linear-gradient(120deg,#1E3A8A,#2563EB,#F59E0B) */
+}
+
+.gradient-inkstorm{         /* Black / Indigo / Teal */
+  --neon-violet:#000000; --neon-cyan:#4338CA; --neon-orange:#06B6D4;
+  /* linear-gradient(120deg,#000000,#4338CA,#06B6D4) */
+}
+
+.gradient-charcoal-ember{   /* Charcoal → Ember */
+  --neon-violet:#111827; --neon-cyan:#F97316; --neon-orange:#EF4444;
+  /* linear-gradient(120deg,#111827,#F97316,#EF4444) */
+}
+
+.gradient-gold-ink{         /* Onyx → Gold → Pale Gold */
+  --neon-violet:#0B0F14; --neon-cyan:#F59E0B; --neon-orange:#FDE68A;
+  /* linear-gradient(120deg,#0B0F14,#F59E0B,#FDE68A) */
+}
+
+.gradient-copper-teal{      /* Copper → Teal */
+  --neon-violet:#7C2D12; --neon-cyan:#EA580C; --neon-orange:#14B8A6;
+  /* linear-gradient(120deg,#7C2D12,#EA580C,#14B8A6) */
+}
+
+.gradient-emerald-slate{    /* Emerald → Slate */
+  --neon-violet:#064E3B; --neon-cyan:#10B981; --neon-orange:#64748B;
+  /* linear-gradient(120deg,#064E3B,#10B981,#64748B) */
+}
+
+.gradient-forest-smoke{     /* Forest → Smoke */
+  --neon-violet:#052E16; --neon-cyan:#16A34A; --neon-orange:#9CA3AF;
+  /* linear-gradient(120deg,#052E16,#16A34A,#9CA3AF) */
+}
+
+.gradient-magenta-sky{      /* Dark → Magenta → Sky */
+  --neon-violet:#0B0F14; --neon-cyan:#EC4899; --neon-orange:#60A5FA;
+  /* linear-gradient(120deg,#0B0F14,#EC4899,#60A5FA) */
+}
+
+.gradient-royal-crimson{    /* Royal → Violet → Crimson */
+  --neon-violet:#1E3A8A; --neon-cyan:#9333EA; --neon-orange:#EF4444;
+  /* linear-gradient(120deg,#1E3A8A,#9333EA,#EF4444) */
+}
+
+.gradient-electric-lime{    /* Slate → Lime → Cyan */
+  --neon-violet:#0F172A; --neon-cyan:#84CC16; --neon-orange:#22D3EE;
+  /* linear-gradient(120deg,#0F172A,#84CC16,#22D3EE) */
+}
+
+.gradient-onyx-silver{      /* Onyx → Steel → Silver */
+  --neon-violet:#0B0F14; --neon-cyan:#4B5563; --neon-orange:#E5E7EB;
+  /* linear-gradient(120deg,#0B0F14,#4B5563,#E5E7EB) */
+}
+
+/* Space Gray — минималистично, для строгих секций на тёмном фоне */
+.gradient-apple-space-gray{
+  --neon-violet:#F5F5F7; /* светлое серебро */
+  --neon-cyan:#A1A1AA;   /* холодный серый */
+  --neon-orange:#4B5563; /* графит */
+  /* linear-gradient(120deg, #F5F5F7, #A1A1AA, #4B5563) */
+}
+
+/* Hero Blue — фирменный сине‑фиолетовый (как на hero‑экранах и iOS акцентах) */
+.gradient-apple-hero-blue{
+  --neon-violet:#0A84FF; /* Apple Blue */
+  --neon-cyan:#5E5CE6;   /* iOS Purple */
+  --neon-orange:#64D2FF; /* Light Blue accent */
+  /* linear-gradient(120deg, #0A84FF, #5E5CE6, #64D2FF) */
+}
+
+/* Event Neon — яркий «приглашение/ивент» (постерные презентации) */
+.gradient-apple-event{
+  --neon-violet:#FF2D55; /* Pink/Red (Product-ish) */
+  --neon-cyan:#BF5AF2;   /* Vibrant Purple */
+  --neon-orange:#0A84FF; /* Apple Blue */
+  /* linear-gradient(120deg, #FF2D55, #BF5AF2, #0A84FF) */
+}
+
+
+
+    /* Telegram icon tiny pulse (used inline) */
+    @keyframes icon-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+    /* Градиентный «живой» заголовок только в модалке стека */
+    #stack-modal .modal-gradient-title{
+      background: linear-gradient(120deg, #22d3ee, #3b82f6, #22d3ee);
+      background-size: 220% 220%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent; /* для Safari */
+      animation: stackTitleGradientMove 5.5s ease-in-out infinite alternate;
+    }
+    @keyframes stackTitleGradientMove{
+      0%{ background-position: 0% 50%; }
+      100%{ background-position: 100% 50%; }
+    }
+
+    /* Neon outline для блоков в модалке кейса (чипы результатов и инфобоксы) */
+.neon-outline{
+  position:relative;
+  border-radius:0.9rem;
+}
+.neon-outline::before{
+  content:"";
+  position:absolute; inset:0; border-radius:inherit; padding:2px;
+  background:linear-gradient(45deg,var(--neon-cyan),var(--neon-orange));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:1; pointer-events:none;
+}
+.neon-outline::after{
+  content:"";
+  position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(45deg,var(--neon-cyan),var(--neon-orange));
+  filter:blur(18px); opacity:.25; z-index:-1; pointer-events:none;
+}
+
+.case-result-value{
+font-size: clamp(2.25rem, 6vw, 4.5rem); /* ~36px → 72px+ /
+font-weight: 900;
+line-height: 1;
+letter-spacing: -0.02em;
+}
+.case-result-label{
+font-size: .8rem; / ≈ 12.8px /
+color: #94a3b8; / text-gray-400 */
+}
+
+    /* MODALS */
+    .modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1rem;transition:opacity .3s ease}
+    .modal-content{transition:transform .3s cubic-bezier(.175,.885,.32,1.275),opacity .3s ease}
+    .modal.hidden{opacity:0;pointer-events:none}
+    .modal.hidden .modal-content{transform:scale(.9);opacity:0}
+
+    /* COUNTERS: inner glow during count + hover neon perimeter only after all finished */
+    .counter-card{position:relative;overflow:visible;transform:translateZ(0);transition:transform .25s ease;border-radius:0.75rem}
+    .counter-card:hover{transform:scale(1.03)} /* аккуратнее ховер */
+    /* Inner glow - mystical & noticeable, animated during progress and pulsing after finish */
+    .counter-card .glow-anim{
+      position:absolute;inset:6px;border-radius:.75rem;
+      background:radial-gradient(65% 65% at 50% 50%,
+        rgba(139,92,246,.28) 0%,
+        rgba(34,211,238,.25) 40%,
+        rgba(59,130,246,.38) 70%,
+        rgba(139,92,246,.48) 100%);
+      opacity:0;transition:opacity .25s linear;pointer-events:none
+    }
+    @keyframes pulseGlow{0%,100%{opacity:.32}50%{opacity:.6}}
+    .counter-card.finished .glow-anim{animation:pulseGlow 2.2s ease-in-out infinite}
+
+    /* Hover neon perimeter (inside) only after all counters complete */
+    .counter-card::before,.counter-card::after{
+      content:"";position:absolute;inset:0;border-radius:0.75rem;pointer-events:none;opacity:0;transition:opacity .35s ease
+    }
+    .counter-card::before{
+      padding:2px;
+      background:linear-gradient(45deg,var(--neon-cyanblue-start),var(--neon-cyanblue-end));
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude
+    }
+    .counter-card::after{
+      background:linear-gradient(45deg,var(--neon-cyanblue-start),var(--neon-cyanblue-end));
+      filter:blur(18px);z-index:-1
+    }
+    .counters-done .counter-card:hover::before{opacity:1}
+    .counters-done .counter-card:hover::after{opacity:.28}
+
+    /* numbers gradient runs after all counters complete */
+    .number-gradient-flow{
+      background:linear-gradient(90deg,#8b5cf6,#3b82f6,#06b6d4,#8b5cf6);
+      background-size:300% 100%;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:gradientFlow 4s linear infinite
+    }
+    @keyframes gradientFlow{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+
+    /* CASE CARDS */
+    .case-card{transition:opacity .5s ease,transform .5s ease}
+    .case-card.is-moving{transition:none}
+    .case-card:hover img{filter:brightness(1.12) saturate(1.08);transform:scale(1.06)}
+
+    /* EXPERIENCE glowing dot */
+    .experience-item .timeline-dot{transition:background-color .5s ease,box-shadow .5s ease}
+    .experience-item.is-glowing .timeline-dot{background-color:var(--neon-cyan);box-shadow:0 0 15px var(--neon-cyan)}
+
+    /* ABOUT section glow toggle (active via JS) */
+    .neon-hover-effect.is-glowing{box-shadow:0 0 24px rgba(0,255,255,.12)}
+    .neon-hover-effect.is-glowing::before{opacity:1}
+    .neon-hover-effect.is-glowing::after{opacity:.25}
+
+    /* Header compact on scroll */
+    #main-header.header-scrolled .container>.flex{height:64px}
+
+    /* TOOLS (lab) styles */
+    .tool-card .tool-image{transition:transform .6s cubic-bezier(.2,.7,.2,1), filter .6s}
+    .tool-card:hover .tool-image{transform:scale(1.05); filter:saturate(1.1) brightness(1.05)}
+    .tool-tag{
+      display:inline-flex; align-items:center; gap:.35rem;
+      padding:.3rem .55rem; border-radius:999px;
+      font-size:.78rem; line-height:1;
+      background:linear-gradient(45deg, rgba(34,211,238,.12), rgba(59,130,246,.12));
+      border:1px solid rgba(255,255,255,.12);
+      color:#c8e7ff;
+    }
+    .tool-cta{
+      position:relative;
+    }
+    .tool-cta::before{
+      content:""; position:absolute; inset:0; border-radius:.75rem; padding:2px; opacity:.0;
+      background:linear-gradient(45deg, var(--neon-cyanblue-start), var(--neon-cyanblue-end));
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      transition:opacity .35s ease;
+    }
+    .tool-cta:hover::before{opacity:.6}
+  </style>
+</head>
+<body>
+
+  <!-- Aurora background -->
+  <div class="aurora-background">
+    <div class="absolute top-[5%] left-[10%] w-[500px] h-[500px] bg-violet-500/30 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
+    <div class="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] bg-orange-500/40 rounded-full blur-3xl animate-pulse-slow animation-delay-4000"></div>
+    <div class="absolute top-[-20%] right-[-20%] w-[600px] h-[600px] bg-cyan-500/25 rounded-full blur-3xl animate-pulse-slow"></div>
+  </div>
+
+  <!-- Header -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="#home" class="text-xl font-extrabold text-white">AR</a>
+        <nav class="hidden md:flex items-center space-x-2">
+          <a href="#about" class="header-nav-link text-sm font-medium text-gray-300">Обо мне</a>
+          <a href="#stack" class="header-nav-link text-sm font-medium text-gray-300">Навыки</a>
+          <a href="#cases" class="header-nav-link text-sm font-medium text-gray-300">Кейсы</a>
+          <a href="#tools" class="header-nav-link text-sm font-medium text-gray-300">Дашборды</a>
+          <a href="#contact" class="header-nav-link text-sm font-medium text-gray-300">Контакт</a>
+        </nav>
+        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-5 py-1.5 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">Связаться</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" data-ty-scope class="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-24"
+             style="--title-size: clamp(3rem, 6vw + 1rem, 5rem);">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        <div class="reveal visible">
+          <h1 class="ty-title font-extrabold tracking-tight text-white">
+            👋 Привет, я <br><span class="animated-gradient-text" style="--neon-violet:#FF2D55; /* Pink/Red (Product-ish) */
+  --neon-cyan:#BF5AF2;   /* Vibrant Purple */
+  --neon-orange:#0A84FF;">Антон Рясов</span>
+          </h1>
+          <p class="ty-body mt-6 max-w-3xl mx-auto" style="--body-size: 1.25rem;">
+            Data-driven маркетолог и бренд-стратег. Соединяю <span class="animated-gradient-text gradient-apple-hero-blue font-semibold"><strong>аналитику, креатив и управление:</strong></span> выстраиваю бренд, продукт и коммуникации, превращаю сложные данные в элегантные решения, чтобы давать <span class="animated-gradient-text gradient-apple-hero-blue font-semibold"><strong>устойчивый ROMI и понятную экономику роста</strong></span>.
+          </p>
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#cases" class="inline-flex items-center justify-center gap-2 px-6 py-3 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">
+              <!-- Icon fixed (no clipping) -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0 text-cyan-300" viewBox="0 0 24 24" fill="none" style="overflow:visible">
+                <path d="M22 2 11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 2 15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              <span class="ty-button">Мои проекты</span>
+            </a>
+            <a href="#contact" class="inline-flex items-center justify-center gap-2 px-6 py-3 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">
+              <!-- Icon fixed (no clipping) -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0 text-cyan-300" viewBox="0 0 24 24" fill="none" style="overflow:visible">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              <span class="ty-button">Связаться со мной</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Counters (чуть компактнее и аккуратнее) -->
+        <div id="counters-container" class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto reveal" style="transition-delay:.3s">
+          <!-- Card 1 -->
+          <div class="p-4 bg-white/5 rounded-lg border border-white/10 counter-card" data-target="8">
+            <div class="glow-anim"></div>
+            <div class="text-3xl font-extrabold text-cyan-400"><span class="animated-counter-value">0</span></div>
+            <div class="ty-small mt-1">Лет опыта в индустрии</div>
+          </div>
+          <!-- Card 2 -->
+          <div class="p-4 bg-white/5 rounded-lg border border-white/10 counter-card" data-target="770" data-suffix="%">
+            <div class="glow-anim"></div>
+            <div class="text-3xl font-extrabold text-cyan-400"><span class="animated-counter-value">0</span>%</div>
+            <div class="ty-small mt-1">% ROMI в ключевых проектах</div>
+          </div>
+          <!-- Card 3 -->
+          <div class="p-4 bg-white/5 rounded-lg border border-white/10 counter-card" data-target="15" data-suffix="+">
+            <div class="glow-anim"></div>
+            <div class="text-3xl font-extrabold text-cyan-400"><span class="animated-counter-value">0</span>+</div>
+            <div class="ty-small mt-1">крупных брендов в портфолио</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" data-ty-scope class="py-24 sm:py-32 reveal">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-3 gap-16">
+          <div class="lg:col-span-1 lg:sticky top-24 h-min">
+            <p class="ty-small text-cyan-400 font-semibold mb-2">Обо мне</p>
+            <h2 id="about-sticky-title" class="ty-title font-extrabold leading-snug">
+              <span id="about-word-strategy" class="inline-block animated-gradient-text">Стратегия.</span><br/>
+              <span class="inline-block animated-gradient-text">Креатив.</span><br/>
+              <span id="about-word-result" class="inline-block animated-gradient-text">Результат.</span>
+            </h2>
+          </div>
+
+          <div class="lg:col-span-2 space-y-10">
+            <!-- Extended intro -->
+            <div class="space-y-5">
+              <h3 class="ty-subtitle text-cyan-400 font-bold">Кто я как специалист</h3>
+              <p class="ty-body text-gray-300">
+                Я соединяю <span class="animated-gradient-text font-semibold">аналитику и креатив</span>, чтобы бренды росли не только в цифрах, но и в восприятии аудитории. Моя сильная сторона — перевод данных на язык решений: от гипотез и прогнозов до концепций, кампаний и измеримого ROMI.
+                Мне близок принцип «strategy-first, creative-always»: сначала — системная логика и экономика, затем — визуал и эмоция, которые заставляют рынок говорить о продукте.
+              </p>
+              <p class="ty-body text-gray-300">
+                Умею строить путь от «сейчас» к «хочу»: исследую и сегментирую аудиторию (CJM, JTBD), считаю unit‑экономику и прогнозы (SARIMA/Holt‑Winters), создаю платформу бренда и коммуникационные столпы, организую продакшн, пишу код для автоматизации и BI‑отчётов, а затем — измеряю эффект и масштабирую лучшее.
+              </p>
+            </div>
+
+            <!-- About points: теперь по одному в ряд -->
+            <div class="grid grid-cols-1 gap-6">
+              <!-- 01 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">01. Данные как источник вдохновения</h4>
+                <p class="ty-body text-gray-300">
+                  Аналитика не убивает креатив — она делает его точным. Я использую Python (Pandas, statsmodels) и BI‑инструменты, чтобы формировать гипотезы, а не оправдывать уже принятые решения.
+                </p>
+              </div>
+              <!-- 02 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">02. Эстетика и функциональность</h4>
+                <p class="ty-body text-gray-300">
+                  Визуал и смысл неразделимы. Каждый макет, декомпозиция воронки или дашборд — не просто красиво, а понятно и «работает на цель».
+                </p>
+              </div>
+              <!-- 03 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">03. Бизнес‑ориентированный подход</h4>
+                <p class="ty-body text-gray-300">
+                  Стратегия = приоритеты. Выбор каналов, идеи, медиаплан и продакшн подчинены метрикам: ROMI, LTV, конверсиям и скорости окупаемости.
+                </p>
+              </div>
+              <!-- 04 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">04. Прогнозирование и моделирование</h4>
+                <p class="ty-body text-gray-300">
+                  Строю прогнозы спроса и выручки (SARIMA/Holt‑Winters), работаю с сезонностью и событиями, считаю сценарии (оптимист/база/пессимист), моделирую вклад каналов и эластичность.
+                </p>
+              </div>
+              <!-- 05 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">05. Визуал и продакшн</h4>
+                <p class="ty-body text-gray-300">
+                  Уверенно владею <strong class="animated-gradient-text">Photoshop</strong> и <strong class="animated-gradient-text">Illustrator</strong>, монтирую видео (Premiere Pro/DaVinci), руковожу продакшном и гарантирую целостность визуального кода бренда.
+                </p>
+              </div>
+              <!-- 06 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">06. Код и автоматизация</h4>
+                <p class="ty-body text-gray-300">
+                  Пишу код для сайтов и автоматизаций: <strong class="animated-gradient-text">Python</strong> (скрипты, отчёты, парсинг), веб (HTML/CSS/JS), склейка данных и интеграции (GA4/CRM). Быстрее собираю гипотезы — быстрее расту.
+                </p>
+              </div>
+              <!-- 07 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">07. Коммуникации и лидерство</h4>
+                <p class="ty-body text-gray-300">
+                  Умею объяснять сложное простым языком, фасилитировать обсуждения и защищать концепты на любом уровне. Самостоятельен, но умею строить доверие и «таскать рояль» вместе с командой.
+                </p>
+              </div>
+              <!-- 08 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">08. Чувствую тренды</h4>
+                <p class="ty-body text-gray-300">
+                  Слежу за трендами в digital/культуре/медиа и превращаю их в понятные механики: коллаборации, UGC, influence‑подходы, форматные решения для соцсетей и PR.
+                </p>
+              </div>
+              <!-- 09 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">09. Языки и международный контекст</h4>
+                <p class="ty-body text-gray-300">
+                  Английский — <strong class="animated-gradient-text">C2</strong> (в совершенстве), итальянский — упорно практикую (≈ <strong class="animated-gradient-text">B1–B2</strong>), иврит — базовый (<strong class="animated-gradient-text">A2</strong>). Уверенно работаю с международными гайдами и мультикультурными командами.
+                </p>
+              </div>
+              <!-- 10 -->
+              <div class="p-6 bg-white/5 border border-white/10 neon-hover-effect about-point rounded-xl">
+                <h4 class="ty-subtitle font-bold text-white mb-2">10. Ownership и результат</h4>
+                <p class="ty-body text-gray-300">
+                  Беру ответственность за результат, двигаю проект к цели и держу фокус на экономике бизнеса. Моя планка — отдавать больше, чем от меня ожидают.
+                </p>
+              </div>
+            </div>
+
+            <!-- Micro-facts / tags -->
+            <div class="flex flex-wrap gap-2">
+              <span class="tool-tag">Python</span>
+              <span class="tool-tag">GA4</span>
+              <span class="tool-tag">BI / Dashboards</span>
+              <span class="tool-tag">Photoshop</span>
+              <span class="tool-tag">Illustrator</span>
+              <span class="tool-tag">Premiere Pro</span>
+              <span class="tool-tag">HTML/CSS/JS</span>
+              <span class="tool-tag">Brand Strategy</span>
+              <span class="tool-tag">Influence</span>
+              <span class="tool-tag">CJM / JTBD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- STACK -->
+    <section id="stack" data-ty-scope class="py-24 sm:py-32 reveal">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <p class="ty-small text-cyan-400 font-semibold mb-2">Инструменты</p>
+          <h2 class="ty-title font-bold"><section class="gradient-apple-space-gray"><span class="animated-gradient-text">Технологический стек</span></section></h2>
+          <p class="ty-body mt-4 text-gray-300">Нажмите на карточку, чтобы узнать больше о применяемых методиках.</p>
+        </div>
+        <div id="stack-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="group p-8 text-center bg-white/5 rounded-xl border border-white/10 transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)] hover:-translate-y-2 reveal cursor-pointer" data-stack-id="strategy">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 mb-4 text-cyan-300 mx-auto" style="overflow:visible"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            <h3 class="ty-subtitle text-white font-bold mb-4">Стратегия</h3>
+            <ul class="space-y-2 ty-body text-gray-300"><li>SWOT & PEST-анализ</li><li>Customer Journey Mapping</li><li>Brand Archetypes</li><li>Jobs-to-be-Done (JTBD)</li></ul>
+          </div>
+          <div class="group p-8 text-center bg-white/5 rounded-xl border border-white/10 transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)] hover:-translate-y-2 reveal cursor-pointer" style="transition-delay:.1s" data-stack-id="analytics">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 mb-4 text-cyan-300 mx-auto" style="overflow:visible"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <h3 class="ty-subtitle text-white font-bold mb-4">Аналитика</h3>
+            <ul class="space-y-2 ty-body text-gray-300"><li>Python (Pandas, SARIMA)</li><li>Google Analytics 4</li><li>Excel / Google Sheets</li><li>CRM-аналитика</li></ul>
+          </div>
+          <div class="group p-8 text-center bg-white/5 rounded-xl border border-white/10 transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)] hover:-translate-y-2 reveal cursor-pointer"
+     style="transition-delay:.2s"
+     data-stack-id="creative">
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 mb-4 text-cyan-300 mx-auto" style="overflow:visible">
+    <path d="M12 3c.3 0 .6.1.8.4l1.8 3.1c.1.2.3.3.5.3h3.7c.5 0 .9.5.8 1l-2.9 5.2c-.1.2-.1.5 0 .7l2.9 5.2c.1.5-.3 1-.8 1H15c-.2 0-.4.1-.5.3l-1.8 3.1c-.2.3-.5.4-.8.4s-.6-.1-.8-.4l-1.8-3.1c-.1-.2-.3-.3-.5-.3H6.3c-.5 0-.9-.5-.8-1l2.9-5.2c.1-.2.1-.5 0-.7L5.5 8.7c-.1-.5.3-1 .8-1H10c.2 0 .4-.1.5-.3l1.8-3.1c.2-.3.5-.4.8-.4z"/>
+  </svg>
+  <h3 class="ty-subtitle text-white font-bold mb-4">Креатив</h3>
+  <ul class="space-y-2 ty-body text-gray-300">
+    <li>Figma</li>
+    <li>Photoshop/Illustrator</li>
+    <li>DaVinci Resolve / Final Cut</li>
+    <li>Notion/Miro</li>
+  </ul>
+</div>
+          <div class="group p-8 text-center bg-white/5 rounded-xl border border-white/10 transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)] hover:-translate-y-2 reveal cursor-pointer" style="transition-delay:.3s" data-stack-id="management">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 mb-4 text-cyan-300 mx-auto" style="overflow:visible"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <h3 class="ty-subtitle text-white font-bold mb-4">Менеджмент</h3>
+            <ul class="space-y-2 ty-body text-gray-300"><li>Trello / Asana</li><li>Notion</li><li>Slack</li><li>Keynote / PowerPoint</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASES -->
+    <section id="cases" data-ty-scope class="py-24 sm:py-32 reveal">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <p class="ty-small text-cyan-400 font-semibold mb-2">Портфолио</p>
+          <h2 class="ty-title font-bold"><span class="animated-gradient-text">Избранные проекты</span></h2>
+        </div>
+
+        <div id="case-filters" class="flex justify-center flex-wrap gap-2 mb-12">
+          <button data-filter="all" class="px-4 py-2 text-sm font-semibold rounded-md transition-colors bg-cyan-600 text-white">All</button>
+          <button data-filter="fashion" class="px-4 py-2 text-sm font-semibold rounded-md transition-colors bg-white/10 text-gray-300 hover:bg-white/20">Fashion</button>
+          <button data-filter="hospitality" class="px-4 py-2 text-sm font-semibold rounded-md transition-colors bg-white/10 text-gray-300 hover:bg-white/20">Hospitality</button>
+          <button data-filter="fmcg" class="px-4 py-2 text-sm font-semibold rounded-md transition-colors bg-white/10 text-gray-300 hover:bg-white/20">Fmcg</button>
+          <button data-filter="saas" class="px-4 py-2 text-sm font-semibold rounded-md transition-colors bg-white/10 text-gray-300 hover:bg-white/20">Saas</button>
+        </div>
+
+        <div id="cases-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      </div>
+    </section>
+
+    <!-- TOOLS (ONLINE PRODUCTS) -->
+    <section id="tools" data-ty-scope class="py-24 sm:py-32 reveal">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <p class="ty-small text-cyan-400 font-semibold mb-2">Онлайн‑инструменты</p>
+          <h2 class="ty-title font-extrabold">Создаю продукты, которые <span class="animated-gradient-text">ускоряют</span> решения</h2>
+          <p class="ty-body mt-4 text-gray-300">Интерактивные веб‑инструменты и дашборды для маркетинга и бизнеса: анализ, прогноз, позиционирование и ROI — в одном клике.</p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Дашборд маркетинговых кампаний -->
+          <article class="tool-card group bg-white/5 border border-white/10 rounded-2xl overflow-hidden neon-hover-effect flex flex-col">
+            <div class="relative">
+              <img src="https://sun9-21.userapi.com/s/v1/if2/NZ9JBmB-_MwLom3W-osJf5ltvDWe6kbCO86wOMgB2UFGo18Wit5FpuMo6AC2Tp46MpsFHQZAcEi5O2JjFR0hGKvd.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&cs=2560x0" alt="Дашборд аналитики маркетинговых кампаний" class="tool-image w-full h-48 object-cover">
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span class="tool-tag">Аналитика</span>
+                <span class="tool-tag">Кампании</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="ty-subtitle text-white font-extrabold mb-2"><span class="animated-gradient-text">Дашборд маркетинговых кампаний</span></h3>
+              <p class="ty-body text-gray-300 mb-4">
+                Продвинутая аналитика рекламных кампаний с прогнозированием и интерактивной визуализацией ключевых KPI (ROI, CTR, CVR, CPC, CPA, CPM).
+              </p>
+              <ul class="ty-small text-gray-400 space-y-1 mb-6">
+                <li>• Импорт CSV/XLSX, фильтры и группировки</li>
+                <li>• Интерактивные графики</li>
+                <li>• Контекстные подсказки по интерпретации метрик</li>
+              </ul>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="ty-small text-cyan-300">AD • Campaigns</span>
+                <a href="https://ryasov.github.io/marketing_dashboard/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-2 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">
+                  <span class="ty-button">Попробовать</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- BI Dashboard -->
+          <article class="tool-card group bg-white/5 border border-white/10 rounded-2xl overflow-hidden neon-hover-effect flex flex-col">
+            <div class="relative">
+              <img src="https://sun9-46.userapi.com/s/v1/if2/4eK16zfvjEqBAMjZShCrHkqAWS05bEbCoA3e4wuVo8PMZzrrOvDTWvjIhZvH5RKtzU-9UN2rUryiaP_lnDOT9FZU.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&cs=2560x0" alt="Интерактивный BI‑дашборд" class="tool-image w-full h-48 object-cover">
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span class="tool-tag">BI</span>
+                <span class="tool-tag">KPI</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="ty-subtitle text-white font-extrabold mb-2"><span class="animated-gradient-text">Интерактивный BI‑дашборд</span></h3>
+              <p class="ty-body text-gray-300 mb-4">
+                Единая панель управления бизнес‑метриками: выручка, прибыль, средний чек, маржинальность с приоритетами расчёта.
+              </p>
+              <ul class="ty-small text-gray-400 space-y-1 mb-6">
+                <li>• Тепловая карта сезонности и пузырьковая диаграмма "Выручка vs Маржа"</li>
+                <li>• Drill-down по товарам, категориям и регионам с интерактивными фильтрами</li>
+                <li>• Автоматические рекомендации по оптимизации ассортимента и цен</li>
+              </ul>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="ty-small text-cyan-300">Finance</span>
+                <a href="https://ryasov.github.io/bi_dashboard/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-2 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">
+                  <span class="ty-button">Попробовать</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Forecast Tool -->
+          <article class="tool-card group bg-white/5 border border-white/10 rounded-2xl overflow-hidden neon-hover-effect flex flex-col">
+            <div class="relative">
+              <img src="https://sun9-48.userapi.com/s/v1/if2/6wMISVfm0BpzIkYJx_7TJ8NfvDAPjhXbjP_GQIZMyT3j5YRC4XM8_yyM3pDlR-9ZvL5mT1XQl2MfgGkNKLlAnMms.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&cs=2560x0" alt="Инструмент прогноза (аддитивная/мультипликативная)" class="tool-image w-full h-48 object-cover">
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span class="tool-tag">Прогноз</span>
+                <span class="tool-tag">SARIMA</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="ty-subtitle text-white font-extrabold mb-2"><span class="animated-gradient-text">Прогноз спроса и выручки</span></h3>
+              <p class="ty-body text-gray-300 mb-4">
+                Прогнозирование с учётом сезонности и тренда (автоподбор предиктивной модели), доверительные интервалы и сезонные индексы для multiplicative/additive моделей.
+              </p>
+              <ul class="ty-small text-gray-400 space-y-1 mb-6">
+                <li>• Прогноз по общему ряду, категориям и отдельным SKU с CI</li>
+                <li>• Экспорт прогнозов в CSV и PDF</li>
+                <li>• ABC‑XYZ матрица с настраиваемыми порогами и рекомендациями по управлению запасами</li>
+              </ul>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="ty-small text-cyan-300">Time Series</span>
+                <a href="https://ryasov.github.io/forecast/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-2 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">
+                  <span class="ty-button">Попробовать</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ABC-XYZ Analyzer -->
+          <article class="tool-card group bg-white/5 border border-white/10 rounded-2xl overflow-hidden neon-hover-effect flex flex-col">
+            <div class="relative">
+              <img src="https://sun9-1.userapi.com/s/v1/if2/-h_xMSlvZJFYOFNPToUt4XZT_6RmEYYmaPyEzd8HmN5iYp5o553ZpcZ4J9GLbtojKDhC5lDhH8xl2OS_wPOzDULt.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&cs=2560x0"  class="tool-image w-full h-48 object-cover">
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span class="tool-tag">SKU</span>
+                <span class="tool-tag">MATRIX</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="ty-subtitle text-white font-extrabold mb-2"><span class="animated-gradient-text">ABC-XYZ: интерактивный анализатор</span></h3>
+              <p class="ty-body text-gray-300 mb-4">
+                Комбинированная матрица по выручке/частоте и стабильности спроса. Быстрая сегментация SKU, рекомендации по запасам и оборачиваемости, экспорт отчётов.
+
+              </p>
+              <ul class="ty-small text-gray-400 space-y-1 mb-6">
+                <li>• Импорт CSV/XLSX, фильтры и группировки</li>
+                <li>• Интерактивные графики и «провалы» до SKU</li>
+                <li>• Рекомендации по сервис‑уровню</li>
+              </ul>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="ty-small text-cyan-300">ABC-XYZ • Inventory</span>
+                <a href="https://ryasov.github.io/abc_xyz/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-2 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">
+                  <span class="ty-button">Попробовать</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ROMI Calculator -->
+          <article class="tool-card group bg-white/5 border border-white/10 rounded-2xl overflow-hidden neon-hover-effect flex flex-col md:col-span-2 lg:col-span-1">
+            <div class="relative">
+              <img src="https://sun9-35.userapi.com/s/v1/if2/auucdzIj8W7abhQtp5WD2hNjs2lem0XCmeHfE18bTej1Si1qyVUvZyUU_cmREhKJJ8wpaHnE92BQTbqCEKOQ5nRn.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&cs=2560x0" alt="Калькулятор ROMI и маркетинговых метрик" class="tool-image w-full h-48 object-cover">
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span class="tool-tag">ROMI</span>
+                <span class="tool-tag">Unit‑Economics</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="ty-subtitle text-white font-extrabold mb-2"><span class="animated-gradient-text">Калькулятор ROMI и маркетинговых показателей</span></h3>
+              <p class="ty-body text-gray-300 mb-4">
+                ROMI, LTV, CAC, CR — с визуализацией в реальном времени. Динамические графики и мгновенный пересчет метрик.
+              </p>
+              <ul class="ty-small text-gray-400 space-y-1 mb-6">
+                <li>• ROMI-калькулятор с анимированным циферблатом и интерпретацией окупаемости</li>
+                <li>• LTV/CAC-анализ с бар-чартом и рекомендациями по бизнес-модели</li>
+                <li>• Конверсионный калькулятор с круговой диаграммой и расчетом частоты действий</li>
+              </ul>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="ty-small text-cyan-300">ROI • CAC/LTV</span>
+                <a href="https://ryasov.github.io/calculators/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-2 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">
+                  <span class="ty-button">Попробовать</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Brand Positioning Constructor -->
+          <article class="tool-card group bg-white/5 border border-white/10 rounded-2xl overflow-hidden neon-hover-effect flex flex-col">
+            <div class="relative">
+              <img src="https://sun9-67.userapi.com/s/v1/if2/5x2qiIkXROTwNDgV8W6ilF2JT4JRQoMuAJzoHgnxQD352pltK83vBwYdQHWXOoAZ5kmnAkBGup_1i3TXTtGxEkqZ.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&cs=2560x0" alt="Гайд и конструктор позиционирования" class="tool-image w-full h-48 object-cover">
+              <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span class="tool-tag">Brand</span>
+                <span class="tool-tag">ToV</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="ty-subtitle text-white font-extrabold mb-2"><span class="animated-gradient-text">Позиционирование: интерактивный гайд‑конструктор</span></h3>
+              <p class="ty-body text-gray-300 mb-4">
+                Пошаговая сборка бренд‑платформы: архетип, ценности, ToV, RTB и коммуникационные столпы. Бенчмаркинг и готовый документ на выходе.
+              </p>
+              <ul class="ty-small text-gray-400 space-y-1 mb-6">
+                <li>• Модули‑подсказки и примеры лучших практик</li>
+                <li>• Конструктор коммуникационных столпов</li>
+                <li>• Экспорт бренд‑платформы в PDF</li>
+              </ul>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="ty-small text-cyan-300">Archetypes</span>
+                <a href="https://ryasov.github.io/positioning/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-6 py-2 transition-all duration-300 ease-in-out rounded-lg bg-white/5 border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-cyan-400 hover:shadow-[0_0_20px_theme(colors.cyan.500/0.5)]">
+                  <span class="ty-button">Попробовать</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" data-ty-scope class="py-24 sm:py-32 reveal section-colored-bg">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <p class="ty-small text-cyan-400 font-semibold mb-2">Карьерный путь</p>
+          <h2 class="ty-title font-extrabold"><section class="gradient-apple-event"><span class="animated-gradient-text">Опыт и достижения</span></section></h2>
+        </div>
+        <div class="max-w-3xl mx-auto">
+          <div class="relative border-l-2 border-cyan-400/30">
+            <div class="experience-item neon-active-glow mb-12 pl-8 relative p-4 rounded-xl">
+              <div class="timeline-dot absolute -left-[11px] top-5 w-5 h-5 bg-gray-800 border-2 border-cyan-400 rounded-full"></div>
+              <h3 class="ty-subtitle text-cyan-400 font-bold">Маркетолог-консультант / Бренд-стратег</h3>
+              <p class="ty-small text-gray-400 my-2">Проектная работа | Июль 2024 — Настоящее время</p>
+              <ul class="list-disc list-inside space-y-2 ty-body text-gray-300">
+                <li>Разработка комплексных маркетинговых и GTM-стратегий для fashion, HoReCa и FMCG.</li>
+                <li>Создание брендов "с нуля": позиционирование, архетип, визуальная и вербальная айдентика.</li>
+                <li>Антикризисное управление и репозиционирование брендов.</li>
+                <li>Ведение проектов "под ключ" как внешний директор по маркетингу.</li>
+                <li>Построение CJM/JTBD‑сегментации, ценностных предложений и коммуникационных столпов с тестированием сообщений (MVT/SMIT).</li>
+                <li>Прогноз спроса (SARIMA/Holt‑Winters), ROMI‑моделирование, бюджетные сценарии и приоритизация каналов.</li>
+                <li>Запуск BI‑дашбордов с когортами, RFM и оповещениями; автоматизация отчётности (Python + Google Sheets API).</li>
+              </ul>
+            </div>
+            <div class="experience-item neon-active-glow mb-12 pl-8 relative p-4 rounded-xl">
+              <div class="timeline-dot absolute -left-[11px] top-5 w-5 h-5 bg-gray-800 border-2 border-cyan-400 rounded-full"></div>
+              <h3 class="ty-subtitle text-cyan-400 font-bold">Менеджер по маркетингу и e-commerce</h3>
+              <p class="ty-small text-gray-400 my-2">Accor (Novotel, Adagio, ibis) | Февраль 2023 — Август 2024</p>
+              <ul class="list-disc list-inside space-y-2 ty-body text-gray-300">
+                <li>Руководил маркетингом кластера (3 бренда).</li>
+                <li>+30% онлайн-бронирований через OTA-оптимизацию и email-маркетинг.</li>
+                <li>Оценка 92% по корпоративному аудиту (1-е место в EMEA).</li>
+                <li>Реализовал ibis Music: рост awareness и +25% выручки бара.</li>
+                <li>SEO‑апгрейд локальных сайтов (структура, контент, schema) → +21% органики, +0.4 п.п. конверсия сайта.</li>
+                <li>CRM‑сегментация и триггеры (welcome/upsell/winback) → +18% email‑выручки QoQ.</li>
+                <li>Улучшение позиций OTA: оптимизация контента/рейтингов → +15 позиций в топ‑выдаче сегмента.</li>
+                <li>Партнёрства и DOOH (ТРЦ/фитнес/ритейл) для событий и спецпредложений; чёткая UTM‑атрибуция.</li>
+              </ul>
+            </div>
+            <div class="experience-item neon-active-glow mb-12 pl-8 relative p-4 rounded-xl">
+              <div class="timeline-dot absolute -left-[11px] top-5 w-5 h-5 bg-gray-800 border-2 border-cyan-400 rounded-full"></div>
+              <h3 class="ty-subtitle text-cyan-400 font-bold">Коммуникационный (PR) менеджер</h3>
+              <p class="ty-small text-gray-400 my-2">R.S.V.P Communications Agency | Дек 2021 — Фев 2023</p>
+              <ul class="list-disc list-inside space-y-2 ty-body text-gray-300">
+                <li>Медиа-поддержка fashion & lifestyle (Converse, Levi’s, UNIQLO, 12 Storeez, Beluga).</li>
+                <li>200+ FOC публикаций в ключевых медиа (Vogue, GQ, Esquire).</li>
+                <li>15+ мероприятий: пресс-дни, презентации, спецпроекты.</li>
+                <li>Экономия до 30% бюджета за счет бартерных интеграций.</li>
+                <li>Расчёт EMV/PR‑value, построение тематических матриц и спикерских карт, KPI‑контроль по воронке упоминаний.</li>
+                <li>Инфлюенс‑рассылки и UGC‑активации; снижение CPA на макро‑инфлюенсерах за счёт микс‑стратегии с микро/нано.</li>
+              </ul>
+            </div>
+            <div class="experience-item neon-active-glow pl-8 relative p-4 rounded-xl">
+              <div class="timeline-dot absolute -left-[11px] top-5 w-5 h-5 bg-gray-800 border-2 border-cyan-400 rounded-full"></div>
+              <h3 class="ty-subtitle text-cyan-400 font-bold">Ранний карьерный путь в сегменте люкс</h3>
+              <p class="ty-small text-gray-400 my-2">Four Seasons, The Ritz-Carlton, Bottega Veneta | 2014 — 2021</p>
+              <ul class="list-disc list-inside space-y-2 ty-body text-gray-300">
+                <li>От специалиста до F&B Supervisor; команда 17 человек.</li>
+                <li>Стандарты LQA & Forbes Travel Guide, выполнение KPI.</li>
+                <li>Глубокое понимание психологии люксового потребителя.</li>
+                <li>Операционные улучшения (SOP, сервис‑дизайн, обучение) → рост NPS, средний чек и повторные визиты.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- CONTACT quick links -->
+    <section id="contact" data-ty-scope class="py-24 sm:py-32 reveal">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="ty-title text-white font-extrabold">Есть амбициозная задача?</h2>
+          <div class="my-8">
+            <a href="mailto:anton.ryasov@outlook.com" class="inline-block ty-title text-cyan-400 relative group" style="--title-size: clamp(2rem, 3.5vw + 1rem, 3.2rem);">
+              <span><span class="animated-gradient-text font-extrabold">Свяжитесь со мной</span></span>
+              <span class="font-extrabold absolute bottom-0 left-0 w-full h-1 bg-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+            </a>
+          </div>
+          <div class="flex justify-center items-center space-x-6">
+            <a href="https://t.me/ryasov?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20Антон%21%20Хочу%20обсудить%20проект." target="_blank" rel="noopener" class="text-gray-400 hover:text-cyan-400 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" style="overflow:visible">
+                <path d="M22 2 11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 2 15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </a>
+            <a href="mailto:anton.ryasov@outlook.com?cc=antnrsv@gmail.com&body=Здравствуйте! Хочу осудить проект.&subject=Предложение о сотрудничестве" class="text-gray-400 hover:text-cyan-400 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" style="overflow:visible">
+                <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </a>
+            <a href="tel:+79035582231" class="text-gray-400 hover:text-cyan-400 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" style="overflow:visible">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.19 18a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3 3.08 2 2 0 0 1 5.11 2h3a2 2 0 0 1 2 1.72c.11.94.35 1.87.7 2.81a2 2 0 0 1-.45 2.11L9.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.94.35 1.87.59 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="https://wa.me/79035582231?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20Антон%21%20Хочу%20обсудить%20проект."
+   target="_blank" rel="noopener"
+   class="text-gray-400 hover:text-cyan-400 transition-colors"
+   aria-label="Написать в WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" style="overflow:visible">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.296-.767.966-.941 1.164-.174.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.174-.297-.018-.458.131-.607.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.009-.371-.011-.57-.011-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.064 2.875 1.213 3.074.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Zm-5.421 7.403h-.003a10.2 10.2 0 0 1-5.192-1.411l-.373-.222-3.853 1.003 1.027-3.74-.243-.384a10.14 10.14 0 0 1-1.545-5.39C1.872 5.619 6.431 1.06 12.033 1.06c2.717 0 5.268 1.06 7.178 2.971a10.13 10.13 0 0 1 2.983 7.194c-.003 5.6-4.562 10.16-10.164 10.16Zm8.413-18.575A11.86 11.86 0 0 0 12.05 0C5.495 0 .554 4.943.551 11.497c0 2.026.532 4.007 1.548 5.756L0 24l6.315-1.654a11.5 11.5 0 0 0 5.683 1.466h.005c6.554 0 11.495-4.943 11.498-11.497a11.43 11.43 0 0 0-3.356-8.178Z"/>
+  </svg>
+</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-bg border-t border-white/10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-400">
+      <p>&copy; 2025 Антон Рясов. Все права защищены.</p>
+      <a href="#home" class="flex items-center gap-2 hover:text-white transition-colors mt-4 sm:mt-0">Наверх
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" style="overflow:visible">
+          <line x1="12" y1="19" x2="12" y2="5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <polyline points="5 12 12 5 19 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div id="case-modal" class="modal hidden">
+    <div class="modal-content relative bg-gray-900 border border-white/10 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 sm:p-12">
+      <button id="close-case-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10" aria-label="Закрыть">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" style="overflow:visible">
+          <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div id="case-modal-body"></div>
+    </div>
+  </div>
+
+  <div id="stack-modal" class="modal hidden">
+    <div class="modal-content relative bg-gray-900 border border-cyan-400/30 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 sm:p-10" style="box-shadow:0 0 40px -10px var(--neon-cyan);">
+      <button id="close-stack-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10" aria-label="Закрыть">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" style="overflow:visible">
+          <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div id="stack-modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Header compact on scroll
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => header.classList.toggle('header-scrolled', window.scrollY > 10));
+
+      // Data
+      const casesData = [
+  {
+      "id": "case-1",
+      "category": "fashion",
+      "badge": "ROMI 770%",
+      "imgSrc": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/0c/82/9d/super-stylish-luxury.jpg?w=1100&h=-1&s=1",
+      "title": "Factory 54",
+      "subtitle": "Fashion Retail",
+      "fullDetails": {
+        "role": "Head of Special Projects & Activation (Консультант)",
+        "period": "2024",
+        "competencies": [
+          "Influence Marketing",
+          "Event as a Platform",
+          "CRM & Loyalty",
+          "Partnerships & Co-branding",
+          "ROMI-моделирование",
+          "UTM/GA4 атрибуция",
+          "Python (Pandas) для анализа",
+          "DOOH/OOH медиа",
+          "Контент-стратегия и продакшн",
+          "Операционное управление проектом"
+        ],
+        "goal": "Усилить эмоциональную связь с брендом и увеличить продажи за счет influence-подхода, событийной платформы и CRM как инструмента комьюнити.",
+        "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Вызов: Премиум-ритейл на перепутье</h4>\n          <p>Factory 54, игрок премиум-сегмента, столкнулся с классической триадой проблем: performance-каналы дорожали, органический охват в соцсетях падал, а рынок был перенасыщен скидками. Бренд рисковал оказаться в ловушке постоянных распродаж, теряя маржинальность и эмоциональную связь с аудиторией. Нужен был стратегический разворот: от прямой рекламы к созданию культурного кода вокруг бренда.</p>\n\n          <h4 class=\"text-white font-semibold\">Ключевая идея: Экосистема «Love Brand»</h4>\n          <p>Вместо точечных акций я предложил создать трехуровневую экосистему, работающую в синергии:</p>\n          <ul class=\"list-disc pl-5 space-y-2\">\n            <li><b>Influence-first:</b> Превратить инфлюенсеров из рекламных щитов в амбассадоров, интегрированных в экономику бренда.</li>\n            <li><b>Event as a Platform:</b> Сделать офлайн-точки «социальными магнитами», генерирующими пользовательский контент (UGC) и живые эмоции.</li>\n            <li><b>CRM as a Community Tool:</b> Использовать базу клиентов не для рассылки скидок, а для построения закрытого клуба с реальными привилегиями.</li>\n          </ul>\n\n          <h4 class=\"text-white font-semibold\">Тактика: От теории к реальным шагам</h4>\n          <ol class=\"list-decimal pl-5 space-y-2\">\n            <li><b>Перезагрузка Influence-маркетинга:</b> Мы создали «карту влияния», подобрав блогеров по архетипам бренда. Внедрили гибридную модель оплаты, завязанную на реальные продажи (промокоды + UTM), что сделало сотрудничество прозрачным и взаимовыгодным.</li>\n            <li><b>Создание «событийных магнитов»:</b> Запустили серию pop-up ивентов в ТЦ с зонами для стильных фото (mirror OOTD) и работой стилистов. Это превратило обычный поход за покупками в событие, которым хотелось делиться.</li>\n            <li><b>Трансформация CRM в комьюнити:</b> Сегментировали базу по RFM-принципу и запустили персонализированные lifestyle-подборки, геймификацию со статусами и доступом к закрытым примеркам. «Спящих» клиентов реанимировали эксклюзивным контентом о капсульных коллекциях.</li>\n            <li><b>Внедрение сквозной аналитики:</b> Разработали единый стандарт UTM-меток и промокодов. Для точной оценки влияния использовали holdout-анализ (сравнивали магазины с акцией и без). Все данные сводились в единый BI-дашборд для принятия решений в реальном времени.</li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Что сделал лично я</h4>\n          <p>Я разработал эту стратегию с нуля, включая модель расчета ROMI и систему атрибуции. Лично провел переговоры с ключевыми инфлюенсерами, собрал команду под проект и запустил BI-отчетность, контролируя KPI на каждом этапе.</p>\n          \n          <h4 class=\"text-white font-semibold\">Результат, который говорит сам за себя</h4>\n          <p>Стратегия сработала. Мы не просто увеличили продажи, а построили машину по генерации лояльности. Инвестиции в инфлюенсеров вернулись с ROMI в 770%, а трафик в магазинах во время ивентов взлетел на 57%. Это доказало, что эмоциональная связь с брендом — самый ценный актив.</p>\n        </div>",
+        "results": [
+          { "value": "<strong>770%</strong>", "label": "ROMI от экосистемы влияния" },
+          { "value": "€87k", "label": "Прямые продажи по промокодам" },
+          { "value": "+57%", "label": "Рост трафика в ТЦ во время Pop-up" }
+        ]
+      }
+    },
+    {
+      "id": "case-2",
+      "category": "hospitality",
+      "imgSrc": "https://amadeus.com/content/dam/amadeus/images/en/blog/2024/06/accor-hqhd-aem.jpg/jcr:content/renditions/cq5dam.web.1920.1080.jpeg",
+      "title": "Accor Hotels",
+      "subtitle": "Cluster Novotel • Adagio • ibis (Киевская)",
+      "fullDetails": {
+        "role": "Менеджер по маркетингу и e-commerce кластера (Novotel, Adagio, ibis)",
+        "period": "Февраль 2023 — Август 2024",
+        "competencies": [
+          "Управление маркетингом кластера (3 бренда)",
+          "Brand governance и аудит соответствия гайдлайнам",
+          "Коммуникационные стратегии (ToV/контент/соцсети)",
+          "E‑commerce/OTA: CRO, Google Hotel Ads, контент и рейтинг‑факторы",
+          "CRM/Email: сегментации RFM, триггеры, персонализация",
+          "PR/Партнерства/Events (DOOH, инфлюенсеры, коллаборации)",
+          "Аналитика: GA4, UTM‑таксономия, BI‑дашборды",
+          "Предложения и тарифы: динамика, сезонные пакеты, спецтарифы",
+          "Green Key (экологическая сертификация)",
+          "Процессы: SOP, обучение, бренд‑киты, playbooks, бюджет/ROMI"
+        ],
+        goal: 'Взять под управление маркетинг и коммуникации трех международных брендов (Novotel, Adagio, ibis) в одном гостиничном кластере на Киевской, устранить последствия длительного управленческого вакуума, восстановить соответствие международным стандартам, выстроить дифференцированные стратегии по каждому бренду, усилить прямые продажи и бренд‑метрики, получить международную эко‑сертификацию Green Key.',
+    solution: `
+      <div class="space-y-6">
+        <h4 class="text-white font-semibold">Контекст и исходная проблема</h4>
+        <p>
+          Кластер из трех отелей Accor (Novotel, Adagio, ibis) на Киевской длительное время оставался без маркетолога. 
+          В результате: несоблюдение международных гайдлайнов, разрозненная коммуникация, смешение тонов голоса и визуальных кодов, 
+          устаревшие материалы, отсутствие единого контент‑календаря, фрагментированные e‑commerce и CRM, слабая атрибуция, 
+          нерелевантные OTA‑описания и «рассыпающиеся» процессы. По сути — управленческий и коммуникационный хаос.
+        </p>
+
+        <h4 class="text-white font-semibold">Диагностика «как есть»</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Brand audit: расхождения по визуалу, шрифтам, фотостилю, шильдикам, POSM, навигации на площадке.</li>
+          <li>Контент/соцсети: смешение ToV брендов, отсутствие единой сетки публикаций и нарратива.</li>
+          <li>Сайты и SEO: несистемный контент локальных страниц, недостаток коммерческих лендингов под офферы, слабая разметка.</li>
+          <li>OTA: нерелевантные описания, устаревший фотоконтент, невыстроенная работа с рейтинг‑факторами и отзывами.</li>
+          <li>CRM/Email: минимальная сегментация, отсутствие триггеров pre‑arrival/upsell/winback, нет единой UTM‑таксономии.</li>
+          <li>Аналитика: разрозненные отчеты, нет единой панельной метрики по D2C/OTA/ROMI.</li>
+          <li>Предложения и тарифы: размытая продуктовая линейка, сезонность «не собрана», нет пакетов и спецтарифов по брендам.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Цели и KPI</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Довести соответствие бренд‑стандартам до 90%+ (результат — 92% и #1 в EMEA).</li>
+          <li>Выстроить дифференцированные стратегии по каждому бренду с ясными территориями коммуникаций.</li>
+          <li>Увеличить долю прямых бронирований (D2C) на уровне кластера на 7–10 п.п.</li>
+          <li>Вывести Adagio на рост онлайн‑бронирований 25–30% YoY, улучшить конверсию сайта.</li>
+          <li>Стандартизировать CRM, поднять выручку email‑канала и метрики вовлеченности.</li>
+          <li>Пройти международную экологическую сертификацию Green Key.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Стратегическая рамка кластера</h4>
+        <p>
+          «Одно ядро управления — три уникальные стратегии». Единый центр планирования, аналитики и бренд‑governance; 
+          раздельные ToV, контент‑опоры и продуктовые фокусы по брендам; кросс‑брендовые синергии в партнерствах и событиях. 
+          Месячные циклы: стратегия → производство контента → публикация/кампании → измерение → оптимизация.
+        </p>
+
+        <h4 class="text-white font-semibold">Дифференцированные стратегии по брендам</h4>
+        <div class="space-y-4">
+          <div>
+            <h5 class="text-cyan-300 font-semibold">Novotel — business & lifestyle</h5>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Позиционирование: современный комфорт, семьи/викенды + MICE/корпоратив.</li>
+              <li>Каналы: SEO‑лендинги под конференции/ивенты, LinkedIn/PR для MICE, пакеты «семейные выходные», «workation».</li>
+              <li>UX/CRO: оптимизация карточек залов/мероприятий, формы заявок, контент‑форматы «кейсов площадки».</li>
+              <li>CRM: сегменты «семьи», «корпоратив/ивенты», pre‑arrival cross‑sell (завтрак/парковка/ранний заезд).</li>
+              <li>Партнерства: wellness (GYM‑GYM), fashion (ЦУМ) — коллаборации и event‑магниты.</li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="text-cyan-300 font-semibold">Adagio — апарт‑отель и long stay</h5>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Позиционирование: «как дома» — кухня, прачечная, пространство на срок от 7/14/30 ночей.</li>
+              <li>Продукт: спецтарифы Long Stay (7/14/30), corporate extended, «pet‑friendly» (отдельный проект и офферы).</li>
+              <li>SEO/контент: запросы «апарт‑отель на Киевской», «длительное проживание», фото/видео «реальной жизни» в номерах.</li>
+              <li>OTA: актуализация описаний, фотосеты, релевантные тарифы — рост видимости и конверсии.</li>
+              <li>CRM/email: триггеры на 3/7/14 дней до заезда, расширенный pre‑arrival upsell.</li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="text-cyan-300 font-semibold">ibis — молодежь, демократичность, музыка</h5>
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Позиционирование: смелый, дружелюбный, «social first».</li>
+              <li>Активности: локализация ibis Music (концепт, айдентика, афиша), инфлюенс‑сетка, DOOH (экраны ТЦ), UGC.</li>
+              <li>F&B: спец‑меню под события, сеты «концерт+бар», коммуникации «сегодня вечером у нас…».</li>
+              <li>Соцсети/контент: короткие форматы, backstage, плейлисты от команды и гостей, микс микро‑инфлюенсеров.</li>
+              <li>CRM: эвент‑сегменты, приглашения и post‑event follow‑up.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4 class="text-white font-semibold">Brand governance и соответствие гайдлайнам</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Локальные «brand‑киты»: шаблоны макетов, правила фотостиля, сетки постов, POSM, навигация на площадке.</li>
+          <li>Тренинги: фронт/маркетинг/операции — ToV, визуал, сервис‑сценарии по брендам.</li>
+          <li>Ежемесячные brand‑чек‑листы и ревью материалов, единый контент‑календарь.</li>
+          <li>Подготовка к корпоративному бренд‑аудиту (Accor): устранение «критичных» и «мажор» несоответствий.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Green Key — экосертификация кластера</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Политики и процедуры: вода/энергия/отходы, «eco‑amenities», химия HK, работа с поставщиками.</li>
+          <li>Обучение персонала, коммуникации с гостями (в т.ч. «Go Green. Skip the Clean»), маркировка и навигация.</li>
+          <li>Документооборот и подготовка к аудиту; мониторинг KPI устойчивости.</li>
+          <li>Итог — получен международный сертификат Green Key для кластера.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Тарифы, пакеты и сезонные промо</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Novotel: Family Weekends, Workation, Conference packages.</li>
+          <li>Adagio: Long Stay 7/14/30, Corporate Extended, Pet‑friendly bundles.</li>
+          <li>ibis: Event Nights (под афишу), «concert + bar» сеты, city breaks.</li>
+          <li>Сезонные кампании: новогодние/майские/летние, локальные сквозные офферы для кластера.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">E‑commerce/OTA/SEO и CRO</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Лендинги под офферы/события, schema.org, улучшенный визуал и UX‑блоки (доказательства, бенефиты, FAQ).</li>
+          <li>Google Hotel Ads и метапоиск: паритет, биды, сценарии бюджетов.</li>
+          <li>OTA: новые фотосеты, описания, релевантные тарифы; системная работа с отзывами и рейтинг‑факторами.</li>
+          <li>A/B тестирование: заголовки, CTA, формы заявок; оптимизация PDP и booking‑flow.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">CRM, автоматизация и аналитика</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Сегментации (RFM/поведение/бренд), welcome/pre‑arrival/upsell/winback.</li>
+          <li>Единая UTM‑таксономия, GA4‑ивенты, BI‑дашборд D2C/OTA/ROMI с ежемесячным разбором.</li>
+          <li>Рост deliverability, OR/CTR; алерты по SLA ответов на отзывы.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Риски и как нивелировали</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Каннибализация брендов внутри кластера — четкие территории, календарь без конфликта офферов.</li>
+          <li>Переизбыток коммуникаций — частотные лимиты, каппинг, smart‑триггеры.</li>
+          <li>Срыв соответствия стандартам — ежемесячный brand‑контроль и ревью креатива.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Моя роль и управление</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Полная ответственность за стратегию и операционное ведение маркетинга кластера.</li>
+          <li>Годовой/квартальный план, бюджет/ROMI, приоритизация спринтов, KPI‑панель.</li>
+          <li>Кросс‑функциональное взаимодействие: операции, продажи, F&B, HR, GM, корпоративный офис.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Реализованные магниты и коллаборации (выборочно)</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>ibis Music — локализация глобальной концепции, DOOH, инфлюенс‑сетка, рост F&B.</li>
+          <li>Novotel × GYM‑GYM — wellness‑партнерство, йога на террасе, F&B вне пиков.</li>
+          <li>ЦУМ × Accor — публичные токи и DOOH в ЦУМ Outlet, PR и новые аудитории.</li>
+          <li>Adagio Pet‑friendly — сервис‑дизайн, офферы и доп. выручка.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Результаты и влияние на бизнес</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>92% соответствия бренд‑стандартам и 1‑е место в регионе EMEA по корпоративному бренд‑аудиту.</li>
+          <li>+9 п.п. доля прямых бронирований (кластер); снижение доли OTA‑комиссий.</li>
+          <li>Adagio: +30% онлайн‑бронирований YoY; +0.6 п.п. конверсия сайта; +21% органический трафик.</li>
+          <li>OTA: рост видимости и конверсии — улучшение позиций в выдаче, новые фотосеты и описания.</li>
+          <li>CRM: +18% выручки из email‑канала; OR +7 п.п., CTR +2 п.п., –0.5 п.п. unsub.</li>
+          <li>Сертификация Green Key: выполнены критерии устойчивого развития, выстроен мониторинг eco‑KPI.</li>
+          <li>Налажено brand governance, единые SOP и playbooks, обучены команды фронта и маркетинга.</li>
+        </ul>
+      </div>
+    `,
+    results: [
+      { value: '92% (#1 EMEA)', label: 'Бренд‑аудит: соответствие стандартам' },
+      { value: '+9 п.п.', label: 'Рост доли прямых бронирований (кластер)' },
+      { value: '+30%', label: 'Онлайн‑бронирования Adagio (YoY)' },
+      { value: 'Green Key', label: 'Международная эко‑сертификация' }
+    ]
+  }
+},
+    {
+      "id": "case-3",
+      "category": "fmcg",
+      "badge": "+54% BRAND AWARENESS",
+      "imgSrc": "https://i0.wp.com/packagingoftheworld.com/wp-content/uploads/2023/01/FB_ALJAMEEL_KINZA_CAN_LEMON_2022.jpg?fit=1920%2C1080&ssl=1",
+      "title": "Kinza",
+      "subtitle": "FMCG Launch",
+      "fullDetails": {
+        "role": "Бренд-стратег (Консультант)",
+        "period": "2024",
+        "competencies": [
+          "Go-to-Market Strategy", "Бренд-платформа и позиционирование", "Data Analysis (Python, SARIMA)", "Trade/Shopper маркетинг", "Influence/UGC", "Ценообразование", "Прогнозирование спроса", "ROMI и бюджетирование", "Кросс-функциональная координация", "BI-отчётность"
+        ],
+        goal: 'Запуск нового FMCG-бренда с быстрым набором узнаваемости и контролируемым складским остатком; минимизация риска избыточных поставок в дебютный сезон.',
+      solution: `
+        <div class="space-y-4">
+          <h4 class="text-white font-semibold">Контекст и проблема</h4>
+          <p>Бренд входит в категорию с высокой сезонностью и сильными игроками. Ошибка в планировании производства ведет к кассовым разрывам (overstock) или потере продаж (out-of-stock). Одновременно требовалось быстро собрать «капитал узнаваемости».</p>
+
+          <h4 class="text-white font-semibold">Подход</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Прогноз спроса (SKU-уровень) на Python (SARIMA/Holt-Winters), учет праздников/промо, чувствительность к цене.</li>
+            <li>Бренд-платформа: архетип, RTB, ядро сообщений; визуальная рамка и ToV.</li>
+            <li>Go-to-Market: инфлюенсер-волны, дистрибуция по сетям, промо-слоты, тест-города.</li>
+            <li>Контрольная панель: sell-in/sell-out, оборачиваемость, возвраты и feedback по точкам.</li>
+          </ul>
+
+          <h4 class="text-white font-semibold">План действий</h4>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li>Сбор витрины данных (история категории, поисковые тренды, синтетические сценарии).</li>
+            <li>Прогнозы по сценариям (опт/база/пессимист), синхронизация с производством и логистикой.</li>
+            <li>Инфлюенсер-пулы (микро/нано) с кодами; контент «из жизни» (UGC).</li>
+            <li>Retail-активации: дегустации, POSM, промо-прайсы и отбор promo-календаря.</li>
+            <li>Еженедельные срезы продаж, корректировки планов и креатива.</li>
+          </ol>
+
+          <h4 class="text-white font-semibold">Инструменты</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Python (Pandas, statsmodels), Google Sheets API для обмена</li>
+            <li>GA4/UTM для e-com, Power BI для дешборда</li>
+            <li>Influence-платформы, инструменты social listening</li>
+          </ul>
+
+          <h4 class="text-white font-semibold">Результаты</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>-18% избыточных поставок vs. безмодельного плана</li>
+            <li>+54% узнаваемость в целевой аудитории по Brand Lift</li>
+            <li>4.25M охват кампании</li>
+          </ul>
+        </div>
+      `,
+      results: [
+        { value: '-18%', label: 'Избыточных поставок' },
+        { value: '+54%', label: 'Узнаваемость в ЦА' },
+        { value: '4.25M', label: 'Охват кампании' }
+      ]
+    }
+  },
+    {
+      "id": "case-4",
+      "category": "hospitality",
+      "badge": "-17% OPEX",
+      "imgSrc": "https://novotelkievskaya.ru/upload/iblock/120/du804j5spoad3uj6v5g906tgklw2ccfh.jpg",
+      "title": "Go Green. Skip the Clean",
+      "subtitle": "Loyalty & Cost Saving",
+      "fullDetails": {
+        "role": "Marketing Manager / Project Lead",
+        "period": "2023",
+        "competencies": [
+          "Customer Loyalty (CRM)", "Операционная эффективность", "Service Design & SOP", "Внутренние коммуникации", "Change Management", "Финмоделирование эффекта", "Тренинги персонала", "UX-контент для гостей", "BI-отчетность"
+        ],
+        "goal": "Разработать и внедрить программу, которая одновременно сократит операционные расходы отеля и повысит лояльность гостей, превратив экологическую инициативу в win-win решение для бизнеса и клиентов.",
+        "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Вызов: Как заработать на том, чего не делаешь?</h4>\n          <p>В гостиничном бизнесе ежедневная уборка — это стандарт, но и значительная статья расходов (OPEX). Задача стояла амбициозная: сократить эти затраты, не уронив качество сервиса и не вызвав негатива у гостей. Более того — превратить это в преимущество.</p>\n\n          <h4 class=\"text-white font-semibold\">Идея: Экология как валюта лояльности</h4>\n          <p>Мы предложили гостям простую и понятную сделку: «Откажитесь от ежедневной уборки, помогите планете и получите за это бонусные баллы в программе лояльности ALL». Инициатива «Go Green. Skip the Clean» превращала пассивного гостя в активного участника эко-движения и вознаграждала его за осознанный выбор.</p>\n\n          <h4 class=\"text-white font-semibold\">Процесс: От идеи до работающей системы</h4>\n          <ol class=\"list-decimal pl-5 space-y-2\">\n            <li><b>Дизайн сервиса:</b> Мы продумали все точки контакта — от информации на стойке регистрации и QR-кодов в номере до email-уведомлений. Коммуникация была выстроена вокруг выгод гостя и его вклада в экологию.</li>\n            <li><b>Интеграция с CRM:</b> Настроили автоматическое начисление баллов и тегирование участников программы. Это позволило нам отслеживать вовлеченность и оценивать эффект.</li>\n            <li><b>Операционная перестройка:</b> Совместно с хозяйственной службой (HK) мы перестроили графики уборки, разработали новые SOP и внедрили систему контроля качества.</li>\n            <li><b>Обучение команды:</b> Провели тренинги для персонала, чтобы каждый сотрудник мог грамотно и убедительно рассказать гостям о преимуществах программы.</li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Результат: Win-Win в чистом виде</h4>\n          <p>Программа превзошла ожидания. Мы сократили операционные расходы на уборку на 17% (с поправкой на загрузку отеля). Вовлеченность в глобальную программу лояльности ALL выросла на 29%. Но самое главное — гости высоко оценили инициативу (9.2/10), подтвердив, что современный сервис — это не только комфорт, но и общие ценности.</p>\n        </div>",
+        "results": [
+          { "value": "-17%", "label": "Снижение операционных затрат на уборку" },
+          { "value": "+29%", "label": "Рост вовлеченности в программу лояльности ALL" },
+          { "value": "9.2/10", "label": "Средняя оценка инициативы гостями" }
+        ]
+      }
+    },
+    {
+      "id": "case-5",
+     "category": "fashion",
+  "badge": "SOLD OUT",
+  "imgSrc": "https://avatars.dzeninfra.ru/get-zen_doc/5210062/pub_63a0d4499c4f613b71fca975_63a0d45475122a2c4027c08a/scale_2400",
+  "title": "GUESS by Marciano",
+  "subtitle": "Christmas Capsule: Стратегия запуска через experiential-маркетинг",
+  "fullDetails": {
+    "role": "PR & Experiential Marketing Lead",
+    "period": "Предрождественский сезон",
+    "competencies": [
+      "Experiential Marketing & Event Management",
+      "PR-стратегия для люксовых брендов",
+      "Influencer Relations (VIP & Top-tier)",
+      "Media Relations и эксклюзивный питчинг",
+      "Разработка креативных концепций",
+      "Арт-дирекшн и контент-продакшн",
+      "Бюджетирование и ROMI-анализ"
+      
+    ],
+    "goal": "Обеспечить доминирование рождественской капсульной коллекции GUESS в высококонкурентном инфополе. Отойти от стандартных методов продвижения, создав уникальный, иммерсивный опыт, который бы сгенерировал мощную волну публикаций в СМИ и соцсетях, легитимизировал коллекцию в премиум-сегменте и привел к Sold Out.",
+    "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Вызов: Как выделиться в «красном океане» рождественских коллекций?</h4>\n          <p>Предрождественский сезон — самое «громкое» время в ритейле. Каждый бренд борется за внимание покупателя. Стандартные инструменты — лукбуки, рассылки, нативная реклама — тонут в общем информационном шуме. Чтобы запуск капсулы GUESS стал событием, нужен был не просто маркетинг, а настоящий спектакль. Требовалось создать инфоповод, который невозможно проигнорировать.</p>\n\n          <h4 class=\"text-white font-semibold\">Стратегическая концепция: «A Hollywood Christmas with GUESS»</h4>\n          <p>Вместо того чтобы просто показывать одежду, мы решили пригласить аудиторию пожить в мире GUESS. Ключевая идея — создать атмосферу классического голливудского Рождества, неотъемлемой частью которого и является новая коллекция. Центром этой вселенной стал эксклюзивный ивент — закрытая «Киноночь GUESS» в самом сердце Москвы, отеле The Ritz-Carlton. Локация была выбрана не случайно: она идеально подчеркивала премиальный и гламурный ДНК бренда.</p>\n\n          <h4 class=\"text-white font-semibold\">Моя роль: Режиссер комплексной кампании</h4>\n          <p>Я отвечал за разработку и реализацию всей экосистемы запуска, где каждый элемент усиливал другой:</p>\n          <ol class=\"list-decimal pl-5 space-y-3\">\n            <li>\n              <b>Создание иммерсивного опыта:</b> Я продумал и организовал ивент «Киноночь GUESS» от концепции до мельчайших деталей. Это был не просто показ, а закрытый вечер для избранных: просмотр классического рождественского фильма в роскошном кинозале отеля, тематический декор, шампанское и, конечно, презентация капсулы. Дресс-кодом вечера стали образы из новой коллекции, что превратило гостей в ее главных амбассадоров.\n            </li>\n            <li>\n              <b>Стратегический кастинг гостей:</b> Я лично занимался подбором и приглашением инфлюенсеров и селебрити. Список гостей был тщательно выверен: только те, кто разделяет ценности бренда и обладает безупречной репутацией. Это позволило создать атмосферу эксклюзивности и получить качественный, органичный контент.\n            </li>\n            <li>\n              <b>Двухфазный PR-нарратив:</b> Коммуникация со СМИ была выстроена в два этапа. Сначала — анонсирующая волна с эксклюзивным тизером коллекции и намеком на грядущее закрытое мероприятие, что создало интригу. Затем — мощная пост-волна с отчетами о прошедшем ивенте, светской хроникой и фотографиями звездных гостей в образах GUESS. Я лично питчил новость ключевым глянцевым и лайфстайл-изданиям.\n            </li>\n             <li>\n              <b>Полная интеграция продукта:</b> Коллекция была не просто представлена на манекенах, она стала частью действия. Инфлюенсеры и гости демонстрировали ее в естественной, непринужденной обстановке, создавая живой и привлекательный контент, который моментально разлетелся по соцсетям.\n            </li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Результаты: Sold Out и укрепление премиального имиджа</h4>\n          <p>Experiential-подход доказал свою эффективность. Мы не просто прорекламировали коллекцию, мы создали вокруг нее историю и мечту. Ивент стал главным инфоповодом недели, обеспечив бренду колоссальный медийный охват и прямое влияние на продажи.</p>\n          <ul class=\"list-disc pl-5 space-y-1\">\n              <li><b>Коммерческий успех:</b> Ключевые модели рождественской капсулы достигли статуса Sold Out в течение двух недель после кампании.</li>\n              <li><b>Медийная ценность:</b> Кампания сгенерировала EMV (эквивалент медийной стоимости) в размере более ₽25 млн.</li>\n              <li><b>Охват в СМИ и Digital:</b> Мы получили более 150 публикаций в целевых медиа и свыше 20 миллионов суммарного охвата в социальных сетях благодаря контенту с мероприятия.</li>\n              <li><b>Имиджевый эффект:</b> Партнерство с The Ritz-Carlton и присутствие топ-инфлюенсеров укрепило позиции GUESS в премиальном сегменте.</li>\n          </ul>\n        </div>",
+    "results": [
+      { "value": "<strong>SOLD OUT</strong>", "label": "Статус ключевых моделей капсулы" },
+      { "value": "₽25M+", "label": "EMV (эквивалент медийной стоимости)" },
+      { "value": "150+", "label": "Публикаций в целевых СМИ" },
+      { "value": "20M+", "label": "Суммарный охват в соцсетях" }
+    ]
+  }
+},
+    {
+      "id": "case-6",
+      "category": "fashion",
+      "badge": "EMV ₽18.7M",
+      "imgSrc": "https://worldpodium.ru/system/files/images/%D1%84%D0%B8%D0%BDIMG_8508-1.jpg",
+       "title": "Эконика х Яндекс.Маркет",
+  "subtitle": "YANDEX DOOTS #ВНЕВРЕМЕНИ: Стратегия запуска продукта с новой философией",
+  "fullDetails": {
+    "role": "PR & Influence-стратег, руководитель коммуникационного запуска",
+    "period": "2022",
+    "competencies": [
+      "Коммуникационная стратегия",
+      "PR и Media Relations",
+      "Influencer Marketing (Top-tier)",
+      "Разработка креативных сценариев",
+      "Копирайтинг и создание пресс-китов",
+      "Арт-дирекшн и контент-продакшн",
+      "Управление репутацией (Brand Safety)",
+      "Аналитика (EMV, Brand Lift, ROMI)"
+    ],
+    "goal": "Разработать и реализовать коммуникационную стратегию для вывода на рынок капсульной коллекции #ВНЕВРЕМЕНИ. Задача — не просто анонсировать продукт, а раскрыть его многоуровневую концепцию (экологичность, трансформер, унисекс), создав мощный информационный всплеск и обеспечив коммерческий успех.",
+    "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Контекст и вызов: Больше, чем просто обувь</h4>\n          <p>Коллаборация «Эконики» и «Яндекс.Маркета» представила рынку не просто обувь, а новый концепт — «дутсы». Это был продукт со сложной ДНК: экологичный (из переработанных материалов с сертификацией GRS), многофункциональный (модели-трансформеры), универсальный (унисекс) и при этом трендовый. Главный вызов состоял в том, чтобы донести все эти смыслы до аудитории, не перегрузив ее, и превратить сложный продукт в желанный объект.</p>\n\n          <h4 class=\"text-white font-semibold\">Стратегический инсайт: От характеристик к философии</h4>\n          <p>Моя стратегия заключалась в том, чтобы сместить фокус с перечисления характеристик на трансляцию философии #ВНЕВРЕМЕНИ — идеи об осознанном потреблении, свободе самовыражения и универсальности. Продукт стал физическим воплощением этой философии, а не просто набором «фич».</p>\n\n          <h4 class=\"text-white font-semibold\">Моя роль: Архитектор коммуникационной экосистемы</h4>\n          <p>Я выступил в роли дирижера, который синхронизировал все коммуникационные потоки для создания единого, мощного и понятного сообщения:</p>\n          <ol class=\"list-decimal pl-5 space-y-3\">\n            <li>\n              <b>Сегментация инфлюенсеров по ценностям:</b> Я разделил пул инфлюенсеров на кластеры. Fashion-блогеры транслировали стиль. Eco-активисты — раскрывали тему устойчивого развития. Lifestyle-инфлюенсеры — демонстрировали функциональность. Такой подход позволил раскрыть все грани продукта для разных сегментов аудитории.\n            </li>\n            <li>\n              <b>Глубокая работа со СМИ:</b> Я подготовил пресс-релиз, в котором сделал акцент на инновационности коллаборации. В питчах для журналистов я предлагал разные углы подачи: от трендов до успешного бизнес-кейса, что обеспечило широкое и качественное медийное покрытие.\n            </li>\n            <li>\n              <b>Оркестрация «Большого взрыва»:</b> Ключевым тактическим ходом стала механика синхронного анбоксинга. Я организовал рассылку запечатанных боксов с коллекцией ключевым инфлюенсерам. На каждой коробке был стикер с точной датой и временем: «Вскрыть в прямом эфире 20 октября в 12:00». Это простое решение превратило стандартный seeding в масштабное digital-событие, создав интригу, предвкушение и мощную единовременную волну контента, которая доминировала в инфополе в день старта продаж.\n            </li>\n            <li>\n              <b>Синергия с Hero Asset:</b> Вся PR и influence-активность работала в связке с главным визуальным элементом кампании — 3D-видео на медиа-экране в Москва-Сити. Моя задача была подготовить аудиторию к этому событию и максимально усилить его эффект, используя контент от инфлюенсеров.\n            </li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Результаты: Осознанный выбор и коммерческий успех</h4>\n          <p>Благодаря выстроенной стратегии и креативным тактическим решениям, нам удалось не просто создать шум, а сформировать понимание ценности продукта. Покупатели выбирали «дутсы» не только за дизайн, но и за философию. Это позволило достичь выдающихся результатов:</p>\n          <ul class=\"list-disc pl-5 space-y-1\">\n              <li><b>Медийная ценность:</b> Коммуникационная кампания сгенерировала EMV (эквивалент медийной стоимости) в размере ₽18.7 млн.</li>\n              <li><b>Бизнес-показатели:</b> Рост продаж на Яндекс.Маркете составил +22%, а ключевые модели коллекции получили статус Sold Out.</li>\n              <li><b>Репутационный эффект:</b> Бренды укрепили свой имидж новаторов, которые не просто следуют трендам, а создают их, делая ставку на осознанность и технологии.</li>\n          </ul>\n        </div>",
+    "results": [
+      { "value": "<strong>₽18.7M</strong>", "label": "EMV (эквивалент медийной стоимости)" },
+      { "value": "+22%", "label": "Рост продаж на Яндекс.Маркете" },
+      { "value": "SOLD OUT", "label": "Статус ключевых моделей коллекции" },
+      { "value": "GRS Certified", "label": "Подтвержденная экологичность продукта" }
+    ]
+  }
+},
+    {
+      "id": "case-7",
+      "category": "hospitality",
+      "badge": "+25% F&B REVENUE",
+      "imgSrc": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+      "title": "ibis Music",
+      "subtitle": "Local Activation",
+      "fullDetails": {
+        "role": "Local Project Lead (Marketing Manager, Accor)",
+        "period": "2023",
+        "competencies": [
+          "Brand Activation", "Event Production", "Experience Design", "Influence Marketing", "DOOH/OOH", "CRM & Email", "Контент и соцсети", "Партнерства", "Атрибуция и ROMI"
+        ],
+        "goal": "Адаптировать и запустить глобальную музыкальную платформу ibis Music на локальном рынке. Превратить отель из места для ночлега в модную городскую площадку, привлечь молодую аудиторию и значительно увеличить выручку F&B-департамента.",
+        "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Вызов: Отель — это не только про кровати</h4>\n          <p>Бренд ibis во всем мире ассоциируется с музыкой, но в нашей локации эта связь была неочевидна. Отель воспринимался как транзитная точка, а не место для досуга. Нужно было сломать этот стереотип и создать мощный магнит для молодой, активной аудитории.</p>\n\n          <h4 class=\"text-white font-semibold\">Идея: Превратить террасу в сцену</h4>\n          <p>Мы решили использовать главный козырь отеля — открытую террасу с видом на Москва-Сити. Гипотеза была проста: регулярные музыкальные события + правильная атмосфера + грамотное продвижение = рост трафика и выручки бара. Мы решили превратить ibis в эпицентр музыкальной жизни района.</p>\n\n          <h4 class=\"text-white font-semibold\">Реализация: От концепции до sold out</h4>\n          <ol class=\"list-decimal pl-5 space-y-2\">\n            <li><b>Создание атмосферы:</b> Разработали локальную айдентику ibis Music, создали фирменные плейлисты, продумали световое оформление и навигацию. Каждый элемент работал на создание нужного настроения.</li>\n            <li><b>Программная сетка:</b> Составили плотный календарь событий на любой вкус — от джазовых вечеров до техно-бранчей, привлекая разных артистов и диджеев.</li>\n            <li><b>Продуктовое предложение:</b> F&B команда разработала специальное меню и барные сеты, которые идеально дополняли музыкальные вечера и стимулировали продажи.</li>\n            <li><b>Массированное продвижение:</b> Мы задействовали все каналы: анонсы в соцсетях, email-рассылки по нашей базе, яркую DOOH-рекламу на экранах в ближайших ТЦ и коллаборации с микро-инфлюенсерами.</li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Результат: Музыка, которая приносит деньги</h4>\n          <p>Проект стал абсолютным успехом. В дни мероприятий выручка F&B-департамента взлетала на 25%. Мы добились главной цели — в отель пошла новая, молодая аудитория (доля гостей 18-30 лет выросла на 18 п.п.). ibis Music перестал быть просто маркетинговой концепцией и превратился в прибыльный и самостоятельный продукт, сделав отель точкой притяжения на карте города.</p>\n        </div>",
+        "results": [
+          { "value": "+25%", "label": "Рост выручки F&B в дни событий" },
+          { "value": "+18 п.п.", "label": "Увеличение доли аудитории 18-30 лет" },
+          { "value": "1.8M", "label": "Показы на цифровых экранах в ТЦ" }
+        ]
+      }
+    },
+    {
+      "id": "case-8",
+      "category": "hospitality",
+      "badge": "PET-FRIENDLY PROGRAM",
+      "imgSrc": "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop",
+      "title": "Adagio Pet‑friendly",
+      "subtitle": "Service Design",
+      "fullDetails": {
+        "role": "Product Owner / Проектный лидер",
+        "period": "2023–2024",
+        "competencies": [
+          "Service Design", "Operations & SOP", "Legal & Policy", "Pricing", "CRM и триггеры", "PR & Partnerships", "UX Copy", "Обучение персонала", "BI и мониторинг"
+        ],
+        "goal": "Разработать и запустить «с нуля» полноценный сервис проживания с домашними животными. Превратить растущий спрос в новый источник дохода и конкурентное преимущество, продумав все детали: от юридических аспектов до мисочки для воды в номере.",
+        "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Проблема: «Можно с собачкой?» — вопрос на миллион</h4>\n          <p>Все больше людей путешествуют с питомцами, но для отелей это головная боль: нет четких правил, персонал не обучен, другие гости жалуются. В результате отель теряет потенциальных клиентов и получает негативные отзывы. Задача была превратить эту проблему в отлаженный и прибыльный сервис.</p>\n\n          <h4 class=\"text-white font-semibold\">Подход: Сервис-дизайн от А до Я</h4>\n          <p>Я подошел к этой задаче как к созданию нового продукта. Мы проработали весь путь клиента (и его питомца) от момента бронирования до выезда:</p>\n          <ol class=\"list-decimal pl-5 space-y-2\">\n            <li><b>Разработка правил игры:</b> Создали четкую и понятную политику проживания: ограничения по весу, разрешенные зоны, правила уборки, размер депозита. Это сняло 90% потенциальных конфликтов.</li>\n            <li><b>Продуманное ценообразование:</b> Ввели понятный «pet-fee» (плату за питомца) и разработали пакет апсейлов: от специальных удобств (лежанки, миски) до услуг партнеров (груминг, ветеринарная клиника).</li>\n            <li><b>Бесшовная коммуникация:</b> Создали специальный раздел на сайте с подробным FAQ, настроили триггерные email-письма с правилами и полезными советами, подготовили приветственные наборы для «хвостатых» гостей.</li>\n            <li><b>Подготовка команды и процессов:</b> Разработали новые SOP для хозяйственной службы и ресепшена, провели обучение персонала. Внедрили специальные теги в CRM, чтобы всегда знать, в каком номере живет гость с питомцем.</li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Результат: Довольные гости, довольные питомцы и растущая выручка</h4>\n          <p>Запуск Pet-friendly программы стал мощным драйвером роста для апарт-отеля Adagio. Мы не только привлекли новый сегмент аудитории, увеличив заполняемость на 12%, но и создали дополнительный источник дохода в размере 1.9 млн рублей за год. Высокая оценка сервиса гостями (4.7/5) подтвердила, что продуманный сервис-дизайн превращает проблемы в возможности.</p>\n        </div>",
+        "results": [
+          { "value": "+12%", "label": "Рост заполняемости за счёт pet‑сегмента" },
+          { "value": "+1.9 млн ₽", "label": "Дополнительная выручка (pet‑fee и апсейл)" },
+          { "value": "4.7/5", "label": "Средняя оценка сервиса гостями" }
+        ]
+      }
+    },
+    {
+      "id": "case-9",
+      "category": "hospitality",
+      "badge": "CO-BRANDED EVENTS",
+      "imgSrc": "https://images.unsplash.com/photo-1520975922284-5f72f23c7f16?q=80&w=1200&auto=format&fit=crop",
+      "title": "ЦУМ × Accor",
+      "subtitle": "Partnership & DOOH",
+      "fullDetails": {
+        "role": "Partnerships & Events Lead",
+        "period": "2024",
+        "competencies": [
+          "Co‑branding", "Event‑менеджмент", "PR/Influence", "DOOH", "Landing & CRM", "Атрибуция", "Продюсирование", "Бюджеты и ROMI"
+        ],
+        "goal": "Создать стратегическое партнерство с лидером fashion-ритейла — ЦУМом, чтобы привлечь в отель новую, премиальную аудиторию. Сгенерировать серию громких инфоповодов, которые укрепят бренд и напрямую повлияют на рост бронирований.",
+        "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Контекст: Синергия премиальных брендов</h4>\n          <p>У отеля была прекрасная инфраструктура и локация, но не хватало ассоциаций с миром моды. ЦУМ, в свою очередь, всегда ищет новые площадки и форматы для взаимодействия со своей аудиторией. Это был идеальный мэтч, который нужно было правильно упаковать и реализовать.</p>\n\n          <h4 class=\"text-white font-semibold\">Стратегия: Контент, который нельзя пропустить</h4>\n          <p>Мы решили не ограничиваться стандартным обменом логотипами, а создать совместный продукт — серию public-talks с известными стилистами и инфлюенсерами на живописной террасе отеля. Это позволило нам:</p>\n          <ul class=\"list-disc pl-5 space-y-2\">\n            <li>Привлечь целевую аудиторию ЦУМа на нашу площадку.</li>\n            <li>Создать уникальный и востребованный контент.</li>\n            <li>Получить широкий охват в медиа и соцсетях.</li>\n          </ul>\n\n          <h4 class=\"text-white font-semibold\">Комплексная реализация</h4>\n          <ol class=\"list-decimal pl-5 space-y-2\">\n            <li><b>Продакшн под ключ:</b> Мы взяли на себя всю организацию: от подбора спикеров и разработки тем до технического обеспечения и создания контента для анонсов.</li>\n            <li><b>Цифровая обвязка:</b> Создали лендинг с расписанием и формой регистрации, запустили анонсирующие email-рассылки и PR-поддержку. Каждая ссылка была размечена UTM для отслеживания эффективности.</li>\n            <li><b>Мощная DOOH-поддержка:</b> Договорились о размещении анонсов на цифровых экранах в ЦУМ Outlet, что обеспечило нам прямой контакт с нужной аудиторией в офлайне.</li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Результат: Полные залы и рост бронирований</h4>\n          <p>Коллаборация стала настоящим успехом. Мы провели несколько мероприятий, которые посетили более 600 человек. Реклама на экранах ЦУМ Outlet дала 2.4 миллиона показов. И самое главное — в период проведения активаций мы зафиксировали рост прямых бронирований на 14%. Это доказало, что умные партнерства — это не просто имидж, а эффективный инструмент продаж.</p>\n        </div>",
+        "results": [
+          { "value": "+14%", "label": "Рост прямых бронирований в период коллаборации" },
+          { "value": "2.4M", "label": "Показы рекламы в ЦУМ Outlet (DOOH)" },
+          { "value": "600+", "label": "Участников офлайн-мероприятий" }
+        ]
+      }
+    },
+    {
+      "id": "case-10",
+      "category": "hospitality",
+      "badge": "WELLNESS PARTNERSHIP",
+      "imgSrc": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop",
+      "title": "Novotel × GYM‑GYM",
+      "subtitle": "Wellness Activation",
+      "fullDetails": {
+        "role": "Project Lead / Marketing",
+        "period": "2023",
+        "competencies": [
+          "Partnership Marketing", "Event Ops", "Content & Social", "CRM/Email", "Offer Design", "DOOH/Indoor", "NPS/Feedback", "ROMI"
+        ],
+        "goal": "Найти способ оживить F&B-зоны отеля в непиковые часы и усилить ассоциацию бренда с темой wellness. Создать дополнительную ценность для гостей через стратегическое партнерство.",
+        "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Проблема: «Мертвые часы» в ресторане</h4>\n          <p>У любого отельного ресторана есть часы пик (завтрак, ужин) и часы затишья. Наша задача была придумать, как привлечь людей в отель в это «неудобное» время, не прибегая к банальным скидкам.</p>\n\n          <h4 class=\"text-white font-semibold\">Идея: Йога на террасе + здоровый завтрак</h4>\n          <p>Мы заметили сильный тренд на wellness и здоровый образ жизни. Решение пришло само собой: партнерство с популярной сетью фитнес-клубов GYM-GYM. Мы предложили им нашу живописную террасу для проведения утренних занятий йогой, а своим гостям — уникальную возможность начать день с пользой для тела и души.</p>\n\n          <h4 class=\"text-white font-semibold\">Как это работало</h4>\n          <ol class=\"list-decimal pl-5 space-y-2\">\n            <li><b>Бесплатная ценность:</b> Занятия йогой были бесплатными для гостей отеля, что стало сильным дополнительным преимуществом при выборе места проживания.</li>\n            <li><b>Продуманный оффер:</b> После практики участникам предлагалось специальное wellness-меню и скидки на завтраки. Это создавало естественный переход от спортивной активности к F&B.</li>\n            <li><b>Кросс-продвижение:</b> Мы активно анонсировали занятия в своих соцсетях и рассылках, а GYM-GYM — в своих клубах и онлайн-каналах, обмениваясь аудиториями.</li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Результат: Рост выручки и лояльности</h4>\n          <p>Инициатива идеально сработала. За 3 месяца занятия посетили более 730 человек. Выручка F&B-департамента в непиковые утренние часы выросла на 17%. Кроме того, мы значительно повысили NPS (индекс потребительской лояльности) среди гостей, интересующихся wellness. Это был классический пример того, как креативное партнерство может решать конкретные бизнес-задачи.</p>\n        </div>",
+        "results": [
+          { "value": "+17%", "label": "Рост выручки F&B вне пиковых часов" },
+          { "value": "730", "label": "Участников йога-практик за 3 месяца" },
+          { "value": "+9", "label": "Рост NPS в wellness-сегменте" }
+        ]
+      }
+    },
+    {
+  "id": "case-11",
+  "category": "hospitality",
+  "badge": "№1 В РЕГИОНЕ",
+  "imgSrc": "https://costabrava.su/wp-content/uploads/2024/07/8.jpg",
+  "title": "Costa Brava",
+  "subtitle": "Запуск и позиционирование дизайн-отеля в Каспийске",
+  "fullDetails": {
+    "role": "Руководитель проекта (Pre-opening & Digital Strategy)",
+    "period": "2023–2024",
+    "competencies": [
+      "Brand Strategy & Naming",
+      "Анализ трендов и ЦА (JTBD)",
+      "Создание фотогеничного продукта (Insta-worthiness)",
+      "Digital-first Go-to-Market Strategy",
+      "Ценообразование и Channel Management",
+      "Influence-маркетинг и UGC-стратегия",
+      "Разработка пакетов и спецпредложений",
+      "Операционное управление на старте",
+      "Контроль качества сервиса",
+      "Формирование SMM-экосистемы"
+    ],
+    "goal": "Создать и вывести на высококонкурентный рынок Дагестана новый отель, отстроившись от традиционных предложений. Сформировать бренд, привлекательный для молодой, современной и платежеспособной аудитории из мегаполисов и местных трендсеттеров. Достичь показателя загрузки выше 80% в первый высокий сезон и стать самым упоминаемым отелем региона в социальных сетях.",
+    "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Вызов: Создать «Средиземноморье» на Каспии</h4>\n          <p>Рынок гостеприимства Дагестана развивался по двум сценариям: либо крупные санатории советского типа, либо гостевые дома с акцентом на этно-колорит. Существовал явный пробел в сегменте современных дизайн-отелей европейского формата. Задача состояла в том, чтобы не просто построить красивый объект, а создать целостный «опыт», который бы переносил гостя в атмосферу модной европейской ривьеры. Главный риск — оказаться слишком «холодным» и чуждым для местного рынка и при этом не дотянуть до ожиданий искушенной столичной публики.</p>\n\n          <h4 class=\"text-white font-semibold\">Глубокое погружение: Поколение Instagram</h4>\n          <p>Мы сфокусировались на аудитории, для которой визуальная составляющая и «атмосфера» являются ключевыми факторами выбора. Вся стратегия была построена вокруг их потребностей:</p>\n          <ul class=\"list-disc pl-5 space-y-3\">\n            <li>\n              <b>«Эстеты-путешественники» (туристы из Москвы, СПб):</b> \n              <br><b>JTBD (Работа, которую они хотят выполнить):</b> Получить красивый, комфортный и безопасный отдых в новой для себя локации. Создать впечатляющий фото- и видеоконтент для соцсетей. \n              <br><b>Инсайт:</b> Они ищут не просто отель, а «живую декорацию» для своего отпуска. Каждый уголок должен быть фотогеничным: от бассейна и шезлонгов до подачи завтрака. Сервис должен быть интуитивным и незаметным.\n            </li>\n            <li>\n              <b>«Местные трендсеттеры» (молодая элита Дагестана):</b> \n              <br><b>JTBD:</b> Провести выходные или отпраздновать событие в самом модном месте города, которое не уступает столичным. Подчеркнуть свой статус и хороший вкус.\n              <br><b>Инсайт:</b> Для них важна эксклюзивность и ощущение причастности к «закрытому клубу». Отель должен стать главной точкой для check-in в городе, местом, где «нужно быть».\n            </li>\n          </ul>\n\n          <h4 class=\"text-white font-semibold\">Стратегическая идея: «Ваш личный кусочек Ривьеры»</h4>\n          <p>Мы решили позиционировать Costa Brava не как дагестанский отель, а как небольшой средиземноморский курорт, волей случая оказавшийся на берегу Каспия. Эта идея легла в основу всего: от названия, отсылающего к побережью Испании, до мельчайших деталей сервиса. Мы продавали не койко-место, а эскапизм, возможность «улететь на море», не покидая страны.</p>\n\n          <h4 class=\"text-white font-semibold\">Создание бренда и продукта: Дизайн как главный инструмент</h4>\n          <ol class=\"list-decimal pl-5 space-y-3\">\n            <li><b>Нейминг и айдентика:</b> Название «Costa Brava» было выбрано сознательно, чтобы сразу задать вектор на европейский отдых. [3] Визуальный стиль — минимализм, светлые тона, натуральные материалы, акцент на синий цвет воды и белый цвет архитектуры. Логотип — простой и элегантный, без этнических мотивов.</li>\n            <li><b>Продукт, заточенный под контент:</b>\n              <ul class=\"list-disc pl-6 mt-2 space-y-1\">\n                <li><b>Бассейн как центр вселенной:</b> Круглосуточный подогреваемый бассейн с идеальной подсветкой, водопадами и удобными шезлонгами стал главным «магнитом» и самой фотографируемой зоной. [4]</li>\n                <li><b>Фотогеничная еда:</b> Меню ресторана включало не только блюда местной и европейской кухни, но и популярные «инстаграмные» позиции: боулы, авторские коктейли, красиво оформленные завтраки (на выбор предлагались дагестанский, русский, турецкий и английский). [5, 8]</li>\n                <li><b>Номера и детали:</b> Номера с панорамными окнами и балконами с видом на море или бассейн. [5] Внимание к деталям: брендированные халаты, качественная косметика, стильная посуда.</li>\n              </ul>\n            </li>\n            <li><b>Тарифная сетка и пакеты:</b>\n              <ul class=\"list-disc pl-6 mt-2 space-y-1\">\n                <li><b>Тарифы:</b> Динамическое ценообразование с базовой ценой от 5100-7500 руб./сутки. [6, 12] Введены тарифы «Только завтрак» (BB) и «Без питания» (RO) для гибкости.</li>\n                <li><b>Спецпредложения:</b> Пакет «Романтический уикенд» (проживание, ужин при свечах, поздний выезд), «Insta-тур» (проживание + услуги фотографа), «Девичник у бассейна».</li>\n                <li><b>Корпоративные предложения:</b> Разработаны специальные условия для турагентств и организации выездных мероприятий. [5]</li>\n              </ul>\n            </li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Go-to-Market: Цифровой блицкриг</h4>\n          <p>Запуск был полностью сфокусирован на digital-каналах. За месяц до открытия мы запустили «слепую» тизерную кампанию в Instagram с профессиональными фотографиями интерьеров без указания геолокации, создавая интригу. Основной удар был сделан через influence-маркетинг: мы пригласили в отель на pre-opening уикенд 15-20 блогеров с совокупной аудиторией более 5 млн подписчиков, чья эстетика полностью совпадала с брендом. Это обеспечило взрывной рост узнаваемости и лавину пользовательского контента (UGC) с первого дня работы.</p>\n\n          <h4 class=\"text-white font-semibold\">Результат: Sold Out и статус трендсеттера</h4>\n          <p>Подход «design for social media» превзошел все ожидания. В первый же месяц отель получил более 5000 отметок и упоминаний в Instagram. Загрузка в высокий сезон достигла 92%, при этом 60% бронирований приходилось на прямые каналы (сайт и Instagram), что позволило максимизировать доходность (RevPAR). Costa Brava не просто заполнил пустующую нишу, а создал новый стандарт современного отдыха в Дагестане, став абсолютным лидером по визуальной привлекательности и упоминаемости в социальных сетях.</p>\n        </div>",
+    "results": [
+      { "value": "<strong>92%</strong>", "label": "Загрузка в первый высокий сезон" },
+      { "value": "60%", "label": "Доля прямых бронирований" },
+      { "value": "5000+", "label": "Отметок в Instagram за 1-й месяц" },
+      { "value": "№1", "label": "Самый «инстаграмный» отель региона" }
+    ]
+  }
+},
+    {
+      "id": "case-12",
+      "category": "hospitality",
+      "badge": "DIRECT BOOKING RATIO 50%",
+      "imgSrc": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_67d9dfbb29b2ff038d00b5fd_67d9e02556113d0e69596dbd/scale_1200",
+      "title": "Aura Boutique Hotel",
+      "subtitle": "Стратегия запуска и позиционирование городского отеля-оазиса",
+      "fullDetails": {
+    "role": "Стратегический консультант по бренду и маркетингу (Conception to Launch)",
+    "period": "2022–2023",
+    "competencies": [
+      "Разработка архитектуры бренда и позиционирования",
+      "Глубинный анализ рынка, ЦА и географии",
+      "Прогнозирование спроса и сезонности",
+      "Разработка коммерческой стратегии",
+      "Ценообразование и управление доходом (Revenue Management)",
+      "Разработка тарифной сетки и пакетных предложений",
+      "Консультирование по дизайн-концепции продукта",
+      "Go-to-Market Strategy (Вывод на рынок)",
+      "Работа с лидерами мнений и стимулирование 'сарафанного радио'",
+      "Создание цифровой экосистемы бренда"
+    ],
+    "goal": "Разработать и реализовать бренд-стратегию для бутик-отеля, расположенного не на первой береговой линии. Создать настолько сильную ценность продукта, чтобы нивелировать географический недостаток. Сформировать премиальное ценовое позиционирование и обеспечить высокую долю прямых бронирований за счет силы бренда. Достичь плановой загрузки выше 80% в первый высокий сезон.",
+    "solution": "<div class=\"space-y-6\">\n          <h4 class=\"text-white font-semibold\">Вызов: Превратить географический недостаток в уникальное преимущество</h4>\n          <p>Ключевая проблема проекта Aura заключалась в его местоположении — городская улица Каспийска, в удалении от пляжа. [1] На рынке, где 9 из 10 запросов на премиальный отдых включают 'отель на первой линии', это был критический барьер. Моя задача как стратега состояла в том, чтобы разработать концепцию, которая не просто маскирует этот недостаток, а делает его основой уникального позиционирования и позволяет установить цену выше средней по рынку.</p>\n\n          <h4 class=\"text-white font-semibold\">Глубокое исследование: Анализ аудитории и поиск незанятой ниши</h4>\n          <p>Вместо того чтобы конкурировать за аудиторию, ищущую 'пляжный отдых', я сфокусировался на поиске нового, неохваченного сегмента. Исследование показало наличие растущей группы путешественников, которых я определил как «Новые гедонисты».</p>\n          <ul class=\"list-disc pl-5 space-y-3\">\n            <li>\n              <b>Портрет ЦА:</b> Это путешественники из мегаполисов (28-45 лет) с доходом выше среднего, насмотренные, ценящие эстетику, дизайн и высокий уровень комфорта. Они ищут не просто отдых, а новые впечатления и опыт.\n            </li>\n            <li>\n              <b>JTBD (Работа, которую они хотят выполнить):</b> «Погрузиться в атмосферу полного расслабления и эстетического удовольствия, отгородившись от внешней суеты». Для них отель — это не база для вылазок к морю, а самодостаточное пространство для отдыха, 'destination in itself'.\n            </li>\n            <li>\n              <b>Стратегический инсайт:</b> Эта аудитория готова отказаться от близости к морю в обмен на уединенность, уникальный дизайн и эксклюзивные услуги (такие как бассейн на крыше). Это позволило нам сместить фокус с внешней среды на внутреннюю.\n            </li>\n          </ul>\n\n          <h4 class=\"text-white font-semibold\">Стратегия позиционирования и бренда: «Aura — ваш личный оазис в городе»</h4>\n          <p>На основе инсайта была разработана бренд-платформа, которая легла в основу всех дальнейших решений.</p>\n          <ol class=\"list-decimal pl-5 space-y-3\">\n            <li><b>Позиционирование:</b> Мы отказались от категории «пляжный отель» и создали новую — «городской отель-оазис». Это позволило нам выйти из прямой конкуренции и сформировать собственную нишу.</li>\n            <li><b>Архетип бренда «Эстет»:</b> Весь бренд был построен вокруг ценностей красоты, гармонии и чувственного удовольствия. Это продиктовало визуальный стиль (минимализм, натуральные материалы) и голос бренда (спокойный, обволакивающий, экспертный).</li>\n            <li><b>Продукт как основа бренда:</b> Я тесно работал с дизайнерами, чтобы продукт соответствовал стратегии. Ключевым решением, которое я обосновал с коммерческой точки зрения, стал <b>подогреваемый бассейн на крыше</b>. [3, 4] Это не просто услуга, а стратегический актив, который стал нашим главным УТП и визуальным якорем бренда, полностью компенсируя удаленность от моря. Также была создана концепция SPA-зоны с хаммамом и уютного лобби-кафе. [3]</li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Коммерческая стратегия: Ценообразование и управление доходом</h4>\n          <p>Моя задача состояла в том, чтобы разработать коммерческую модель, обеспечивающую премиальную доходность.</p>\n          <ol class=\"list-decimal pl-5 space-y-3\">\n            <li><b>Прогнозирование и ценообразование:</b> На основе анализа спроса я разработал прогноз, который показал, что уникальное УТП (бассейн на крыше) позволит нам поддерживать высокую загрузку и премиальную цену даже в межсезонье. Мы установили стартовую цену на 20% выше среднего по рынку для отелей без прямого выхода к морю, позиционируя себя как 'доступная роскошь'.</li>\n            <li><b>Тарифная сетка:</b> Была внедрена гибкая тарифная матрица для разных сегментов:\n              <ul class=\"list-disc pl-6 mt-2 space-y-1\">\n                <li><b>«Aura Experience» (основной тариф):</b> Проживание с завтраком. Цель — увеличить средний чек и создать целостное впечатление от бренда.</li>\n                <li><b>«Light Stay»:</b> Только проживание. Для коротких деловых поездок.</li>\n                <li><b>«Early Bird»:</b> Невозвратный тариф с дисконтом для стимулирования ранних бронирований и улучшения прогнозируемости.</li>\n              </ul>\n            </li>\n            <li><b>Пакетные предложения:</b> Для увеличения доходности и стимулирования спроса были созданы пакеты, продающие готовые сценарии отдыха:\n              <ul class=\"list-disc pl-6 mt-2 space-y-1\">\n                <li><b>«Побег из города»:</b> Пакет выходного дня (2 ночи + поздний выезд + сертификат в SPA).</li>\n                <li><b>«Девичник на крыше»:</b> Проживание в смежных номерах, комплименты от отеля и эксклюзивное время у бассейна.</li>\n                <li><b>«Романтический уикенд»:</b> Проживание, ужин в номере и комплимент от отеля.</li>\n              </ul>\n            </li>\n          </ol>\n\n          <h4 class=\"text-white font-semibold\">Маркетинговая стратегия и запуск</h4>\n          <p>Стратегия выхода на рынок была сфокусирована на создании ощущения эксклюзивности. Мы запустили тизерную кампанию в цифровых медиа, показывая лишь фрагменты дизайна и бассейн, создавая интригу. Вместо широкой рекламной кампании было организовано закрытое pre-opening мероприятие для лидеров мнений, журналистов и партнеров из туристической отрасли. Это обеспечило мощную волну позитивных отзывов и рекомендаций, создав репутацию 'места, куда сложно попасть' еще до официального открытия.</p>\n\n          <h4 class=\"text-white font-semibold\">Результат: Создание нового центра притяжения</h4>\n          <p>Разработанная стратегия позволила не только преодолеть географический недостаток, но и превратить его в преимущество. Отель Aura стал восприниматься как эксклюзивный, уединенный оазис. Прогноз по загрузке был перевыполнен: в первый же высокий сезон она составила 85%. Сила бренда и правильная ценовая политика обеспечили долю прямых бронирований на уровне 50%, что является выдающимся показателем для нового отеля и свидетельствует о высокой лояльности аудитории. Мы доказали, что стратегический подход к брендингу и глубокое понимание аудитории способны создать коммерчески успешный продукт, который сам формирует рынок, а не следует за ним.</p>\n        </div>",
+    "results": [
+      { "value": "<strong>85%</strong>", "label": "Загрузка в первый высокий сезон" },
+      { "value": "50%", "label": "Доля прямых бронирований" },
+      { "value": "+20%", "label": "ADR vs. средний по сегменту" },
+      { "value": "№1", "label": "Статус 'destination hotel' в городе" }
+    ]
+  }
+}
+
+
+];
+
+      // Обновленный контент попап-окон технологического стека
+const stackDetails = {
+  strategy: {
+    title: "Стратегия и бренд‑архитектура",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 mb-4 text-cyan-300 mx-auto" style="overflow:visible"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
+    description: `
+      <div class="space-y-5">
+        <h4 class="text-white font-semibold">Когда меня подключают</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Хаос в коммуникации, размытая роль бренда, «всё обо всём» — нет приоритета и фокуса.</li>
+          <li>Слабая дифференциация и кросс‑канальная путаница: сайт, соцсети, PR, офлайн живут своей жизнью.</li>
+          <li>Нет системы KPI и понятной экономики маркетинга, креативные решения не связаны с P&L.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Что делаю (бренд‑архитектура → стратегия роста)</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Бренд‑платформа: архетип, позиционирование, ценности, RTB, коммуникационные столпы, ToV.</li>
+          <li>Исследование и стратегия ЦА: JTBD, CJM, сегментация, value proposition по сегментам.</li>
+          <li>GTM/anti‑crisis план: каналы, гипотезы, бюджеты, тайминг, метрики, риски и меры.</li>
+          <li>Продукт/ценообразование: пакеты, офферы, сезонность, базовая unit‑экономика и payback.</li>
+          <li>Brand governance: гайдлайны, шаблоны, playbooks, процессы ревью и контроль качества.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Фреймворки и подходы</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>JTBD, CJM, Jobs‑To‑Be‑Done интервьирование, segment value matrix.</li>
+          <li>Archetypes/territories, messaging map, comms pillars, RTB/benefit/feature ladder.</li>
+          <li>Prioritization: ICE, RICE, MoSCoW; риск‑карты, reverse planning, roadmap/OKR/KPI.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Артефакты на выходе</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Документ бренд‑платформы и ToV, коммуникационные столпы, контент‑матрица.</li>
+          <li>GTM‑план с бюджетами/ROMI, календарь кампаний, медиаплан, бриф‑шаблоны.</li>
+          <li>Brand‑кит: визуальная система, шаблоны для соцсетей/лендингов/презентаций.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Из практики</h4>
+        <p>Кластер Accor (Novotel, Adagio, ibis) — из хаоса к системе: 92% бренд‑аудит (#1 EMEA), Green Key, D2C рост, понятные процессы и метрики.</p>
+      </div>
+    `
+  },
+
+  analytics: {
+    title: "Data‑driven аналитика и прогнозирование",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 mb-4 text-cyan-300 mx-auto" style="overflow:visible"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+    description: `
+      <div class="space-y-5">
+        <h4 class="text-white font-semibold">Данные → решения</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Формирую витрину данных: GA4/CRM/OTA/финансы/контент, единая UTM‑таксономия.</li>
+          <li>Строю модели для прогнозирования и оптимизации: от спроса и ROMI до эластичности цен.</li>
+          <li>Даю управленческие ответы: что запускать, куда вкладывать, чего не делать и почему.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Методы и инструменты</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Python (Pandas, statsmodels): SARIMA/Holt‑Winters, сценарное планирование.</li>
+          <li>MMM (байесовский), Causal Impact, вклад каналов, carryover/saturation.</li>
+          <li>Эластичность цены/промо, cohort/RFM, A/B‑тестирование, what‑if симуляции.</li>
+          <li>BI (Looker/Power BI): дешборды с KPI/алертами, автоматизированная отчётность.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Примеры эффектов</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>FMCG: −28% OOS, +9.4% маржа, ROMI 420% после ребаланса микса.</li>
+          <li>Hospitality: +30% онлайн‑бронирований Adagio, рост D2C доли и CRO сайта.</li>
+          <li>Retail/Fashion: прозрачная атрибуция инфлюенсеров и событий, ROMI 770%.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">На выходе</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Прогнозы с доверительными интервалами, план‑факт, сценарии бюджетов.</li>
+          <li>Решения по ценам/промо/медиа, приоритизация каналов и гипотез.</li>
+          <li>Дешборды для руководства и операционные регламенты по данным.</li>
+        </ul>
+      </div>
+    `
+  },
+
+  creative: {
+    title: "Креатив и продакшн: дизайн, видео, вёрстка",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 mb-4 text-cyan-300 mx-auto" style="overflow:visible"><path d="M12 3c.3 0 .6.1.8.4l1.8 3.1c.1.2.3.3.5.3h3.7c.5 0 .9.5.8 1l-2.9 5.2c-.1.2-.1.5 0 .7l2.9 5.2c.1.5-.3 1-.8 1H15c-.2 0-.4.1-.5.3l-1.8 3.1c-.2.3-.5.4-.8.4s-.6-.1-.8-.4l-1.8-3.1c-.1-.2-.3-.3-.5-.3H6.3c-.5 0-.9-.5-.8-1l2.9-5.2c.1-.2.1-.5 0-.7L5.5 8.7c-.1-.5.3-1 .8-1H10c.2 0 .4-.1 .5-.3l1.8-3.1c.2-.3.5-.4.8-.4z"/></svg>`,
+    description: `
+      <div class="space-y-5">
+        <h4 class="text-white font-semibold">Дизайн и визуал</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Figma — дизайн‑системы, компоненты, лендинги, презентации, прототипирование.</li>
+          <li>Adobe Photoshop/Illustrator — иллюстрации, ретушь, цветокор, макеты POSM/соцсети/OOH.</li>
+          <li>Соблюдение бренд‑гайдов: сетки, типографика, визуальные коды, адаптации под каналы.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Видео и motion</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>DaVinci Resolve и Final Cut Pro — монтаж, цвет, тайминг, субтитры, звук.</li>
+          <li>Вертикальные/горизонтальные форматы, тизеры, клипы для событий и промо.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Вёрстка и продукт</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Вёрстка промо‑лендингов/страниц (HTML/CSS/JS), подготовка к передаче в разработку.</li>
+          <li>Адаптивы, микро‑копирайт, CTA/структура под конверсию, проверка на соответствие ToV.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Процессы и инструменты</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Notion — контент‑план, бэклог креативов, статус‑трекер и база ассетов.</li>
+          <li>Miro — маппинг идей, мудборды, сценарные доски и воркшопы.</li>
+          <li>Брифы/ревью/QA: чек‑листы качества, hand‑off для продакшна.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">На выходе</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Визуальные кампании, афиши, ключ‑визуалы, пресс‑киты, соц‑медиа наборы.</li>
+          <li>Видео‑ролики под события/кейсы/офферы, экспорт по каналам.</li>
+          <li>Сверстанные лендинги и готовые к разработке макеты.</li>
+        </ul>
+      </div>
+    `
+  },
+
+  management: {
+    title: "Управление проектами и процессами",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8 mb-4 text-cyan-300 mx-auto" style="overflow:visible"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+    description: `
+      <div class="space-y-5">
+        <h4 class="text-white font-semibold">Операционная система маркетинга</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Планирование: год/квартал/месяц, roadmap, бюджет/ROMI, риск‑реестр.</li>
+          <li>Процессы: scrum/kanban, sprint‑ритмы, RACI, SLA креатива/публикаций/ответов.</li>
+          <li>Документы: брифы, playbooks, бренд‑кит, чек‑листы, регламенты ревью.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Команды и коммуникации</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Кросс‑функционально: маркетинг × продажи × F&B × PR × операционные службы.</li>
+          <li>Управление подрядчиками и партнёрами: KPI, SLA, бюджет, качество.</li>
+          <li>Обучение: бренд‑тренинги, QA, ревью материалов и сервис‑сценариев.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Инструменты</h4>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Notion, Trello/Asana — бэклог/борды, базы знаний, календарь кампаний.</li>
+          <li>Slack/Telegram — стыковки, алерты, интеграции.</li>
+          <li>BI‑панели — контроль KPI, алерты и еженедельные дайджесты.</li>
+        </ul>
+
+        <h4 class="text-white font-semibold">Из практики</h4>
+        <p>Accor кластер: «из хаоса — в систему» с чётким brand‑governance и первыми позициями в EMEA по соответствию стандартам.</p>
+      </div>
+    `
+  }
+};
+
+      // Reveal on scroll
+      const revealObserver = new IntersectionObserver((entries)=> {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, {threshold:0.1});
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Experience glow on intersection
+      const experienceObserver = new IntersectionObserver((entries)=> {
+        entries.forEach(entry => entry.target.classList.toggle('is-glowing', entry.isIntersecting));
+      }, {threshold:0.5});
+      document.querySelectorAll('.experience-item').forEach(el => experienceObserver.observe(el));
+
+      // CASES builder
+      const casesGrid = document.getElementById('cases-grid');
+      function createCaseCard(c){
+        const card = document.createElement('div');
+        card.className = 'case-card group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg';
+        card.style.aspectRatio = '1 / 1';
+        card.dataset.caseId = c.id;
+        card.dataset.category = c.category;
+        card.innerHTML = `
+          <img src="${c.imgSrc}" alt="${c.title}" class="w-full h-full object-cover transition-all duration-500"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none"></div>
+          ${c.badge ? `<div class="absolute top-4 right-4 px-3 py-1 text-xs font-bold text-black bg-cyan-400 rounded-full">${c.badge}</div>` : ''}
+          <div class="absolute bottom-0 left-0 p-6 text-white">
+            <p class="ty-small text-cyan-300 font-semibold">${c.subtitle}</p>
+            <h3 class="ty-subtitle text-white font-bold mt-1">${c.title}</h3>
+          </div>
+          <div class="absolute inset-0 border-2 border-transparent rounded-2xl transition-all duration-300 group-hover:border-cyan-400"></div>`;
+        return card;
+      }
+      casesData.forEach(c => casesGrid.appendChild(createCaseCard(c)));
+
+      // CASE filters
+      const caseFilters = document.getElementById('case-filters');
+      caseFilters.addEventListener('click', (e) => {
+        const btn = e.target.closest('button'); if (!btn || btn.classList.contains('bg-cyan-600')) return;
+        const filter = btn.dataset.filter;
+        const active = caseFilters.querySelector('.bg-cyan-600');
+        if (active){ active.classList.replace('bg-cyan-600','bg-white/10'); active.classList.replace('text-white','text-gray-300'); }
+        btn.classList.replace('bg-white/10','bg-cyan-600'); btn.classList.replace('text-gray-300','text-white');
+
+        const cards = Array.from(casesGrid.children);
+        const firstPositions = new Map(cards.map(card => [card.dataset.caseId, card.getBoundingClientRect()]));
+        const toShow = cards.filter(card => filter==='all' || card.dataset.category===filter);
+        const toHide = cards.filter(card => !toShow.includes(card));
+
+        toHide.forEach(card => { card.style.transform='scale(.85)'; card.style.opacity='0'; });
+        setTimeout(() => {
+          cards.forEach(card => { card.style.display = toShow.includes(card) ? '' : 'none'; });
+          requestAnimationFrame(() => {
+            toShow.forEach(card => {
+              const last = card.getBoundingClientRect();
+              const first = firstPositions.get(card.dataset.caseId);
+              const dx = first.left - last.left, dy = first.top - last.top;
+              card.classList.add('is-moving');
+              card.style.transform = `translate(${dx}px,${dy}px) scale(.85)`;
+              card.style.opacity = '0';
+              requestAnimationFrame(() => {
+                card.classList.remove('is-moving');
+                card.style.transform = '';
+                card.style.opacity = '1';
+              });
+            });
+          });
+        }, 220);
+      });
+
+      // Modals
+      function setupModal(modalId, openConfig, closeBtnId, populateFn){
+        const modal = document.getElementById(modalId);
+        const body = modal.querySelector('div[id$="-body"]');
+        const openModal = (data)=>{ populateFn(body,data); modal.classList.remove('hidden'); document.body.style.overflow='hidden'; };
+        const closeModal = ()=>{ modal.classList.add('hidden'); document.body.style.overflow=''; };
+        openConfig.container.addEventListener('click', (e)=> {
+          const trg = e.target.closest(openConfig.selector);
+          if (!trg) return;
+          const id = trg.dataset[openConfig.dataIdKey];
+          const data = openConfig.dataSource.find(i => i.id === id);
+          if (data) openModal(data);
+        });
+        document.getElementById(closeBtnId).addEventListener('click', closeModal);
+        modal.addEventListener('click', (e)=> (e.target===modal) && closeModal());
+        document.addEventListener('keydown', (e)=> { if (e.key==='Escape' && !modal.classList.contains('hidden')) closeModal(); });
+      }
+      setupModal('case-modal',{container:casesGrid,selector:'.case-card',dataIdKey:'caseId',dataSource:casesData},'close-case-modal-btn',(body,data)=>{
+        body.innerHTML = `
+    <!-- Дублированное фото кейса сверху -->
+    <div class="relative mb-6 rounded-2xl overflow-hidden neon-outline">
+      <img src="${data.imgSrc}" alt="${data.title}" class="w-full h-64 sm:h-80 object-cover">
+    </div>
+
+    <h2 class="ty-title">${data.title}</h2>
+    <p class="ty-subtitle text-cyan-400 font-semibold mt-1">${data.subtitle}</p>
+
+    <div class="grid md:grid-cols-3 gap-8 mt-8">
+      <!-- Левая колонка: Роль / Период / Компетенции (с неоновым контуром) -->
+      <div class="md:col-span-1 space-y-6 ty-small">
+        <div class="p-4 bg-white/5 rounded-xl neon-outline">
+          <h4 class="text-gray-400 uppercase tracking-wider">Роль</h4>
+          <p class="text-white mt-1">${data.fullDetails.role}</p>
+        </div>
+        <div class="p-4 bg-white/5 rounded-xl neon-outline">
+          <h4 class="text-gray-400 uppercase tracking-wider">Период</h4>
+          <p class="text-white mt-1">${data.fullDetails.period}</p>
+        </div>
+        <div class="p-4 bg-white/5 rounded-xl neon-outline">
+          <h4 class="text-gray-400 uppercase tracking-wider">Компетенции</h4>
+          <ul class="mt-1 space-y-1 text-white">
+            ${data.fullDetails.competencies.map(v=>`<li>- ${v}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Правая колонка: цель/решение + результаты (с неоновым контуром) -->
+      <div class="md:col-span-2 space-y-6">
+        <div>
+          <h3 class="ty-subtitle text-white font-bold mb-2">Цель проекта</h3>
+          <p class="ty-body text-gray-300">${data.fullDetails.goal}</p>
+        </div>
+        <div>
+          <h3 class="ty-subtitle text-white font-bold mb-2">Стратегическое решение</h3>
+          <div class="ty-body text-gray-300 space-y-4">${data.fullDetails.solution}</div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10">
+          ${data.fullDetails.results.map(r => `
+            <div class="relative p-4 bg-white/5 rounded-xl text-center neon-outline">
+              <p class="ty-subtitle text-cyan-400 font-bold">${r.value}</p>
+              <p class="ty-small text-gray-400 mt-1">${r.label}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>`;
+      });
+
+      const stackGrid = document.getElementById('stack-grid');
+      const stackDataForModal = Object.entries({
+        strategy: stackDetails.strategy, analytics: stackDetails.analytics, creative: stackDetails.creative, management: stackDetails.management
+      }).map(([id,details]) => ({id, ...details}));
+      setupModal('stack-modal',{container:stackGrid,selector:'[data-stack-id]',dataIdKey:'stackId',dataSource:stackDataForModal},'close-stack-modal-btn',(body,data)=>{
+        body.innerHTML = `<div class="flex flex-col items-center text-center">${data.icon}<h2 class="ty-title modal-gradient-title font-extrabold mb-6">${data.title}</h2> </div> <div class="ty-body text-gray-300 space-y-4">${data.description}</div>`;
+      });
+
+      // ABOUT glow logic
+      const spanStrategy = document.getElementById('about-word-strategy');
+      const spanResult = document.getElementById('about-word-result');
+      const aboutPoints = Array.from(document.querySelectorAll('#about .about-point'));
+
+      function updateAboutGlow(){
+        const stratTop = spanStrategy.getBoundingClientRect().top;
+        const resultBottom = spanResult.getBoundingClientRect().bottom;
+        aboutPoints.forEach(point => {
+          const r = point.getBoundingClientRect();
+          const activate = (r.top <= resultBottom) && (r.bottom >= stratTop);
+          point.classList.toggle('is-glowing', activate);
+        });
+      }
+      ['scroll','resize'].forEach(evt => window.addEventListener(evt, updateAboutGlow, {passive:true}));
+      updateAboutGlow();
+
+      // COUNTERS: inner glow grows with progress; after all done -> enable hover perimeter & gradient digits
+      const countersContainer = document.getElementById('counters-container');
+      const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+      async function animateCounterCard(card){
+        const target = parseInt(card.dataset.target, 10) || 0;
+        const suffix = card.dataset.suffix || '';
+        const numEl = card.querySelector('.animated-counter-value');
+        const glow = card.querySelector('.glow-anim');
+
+        const duration = 1300;
+        const start = performance.now();
+
+        return new Promise(resolve => {
+          function step(now){
+            const p = Math.min(1, (now - start) / duration);
+            const value = Math.round(target * p);
+            numEl.textContent = value;
+            glow.style.opacity = (0.18 + 0.72 * p).toFixed(2);
+            if (p < 1){
+              requestAnimationFrame(step);
+            } else {
+              numEl.textContent = target;
+              card.classList.add('finished');
+              resolve();
+            }
+          }
+          requestAnimationFrame(step);
+        }).then(async () => {
+          await sleep(250);
+          if (suffix && !card.__suffixApplied){
+            const parent = numEl.parentElement;
+            if (!parent.textContent.trim().endsWith(suffix)){
+              parent.insertAdjacentText('beforeend', suffix);
+            }
+            card.__suffixApplied = true;
+          }
+        });
+      }
+
+      async function runCountersSequence(){
+        const cards = Array.from(document.querySelectorAll('.counter-card'));
+        if (countersContainer.dataset.run === '1') return;
+        countersContainer.dataset.run = '1';
+
+        for (const card of cards){
+          await animateCounterCard(card);
+        }
+        cards.forEach(card => {
+          const span = card.querySelector('.animated-counter-value');
+          span.classList.add('number-gradient-flow');
+        });
+        countersContainer.classList.add('counters-done');
+      }
+
+      const countersObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting){
+            runCountersSequence();
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.6});
+      if (countersContainer) countersObserver.observe(countersContainer);
+    });
+  </script>
+</body>
+</html>
